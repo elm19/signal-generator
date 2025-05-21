@@ -1,0 +1,75 @@
+---
+title: Predict Endpoint
+description: The `/predict` endpoint provides trading signals for gold futures based on our machine learning models. It can return predictions for both the current day and specific dates when requested.
+
+---
+
+- **URL**: `/predict`
+- **Method**: `GET`
+- **Description**: Retrieves trading predictions for gold futures, including a signal (buy/sell/hold) and confidence score.
+
+## Usage Examples
+
+### Get Current Day Prediction
+
+```python
+import requests
+
+# Get prediction for current day
+response = requests.get('http://your-pythonanywhere-username.pythonanywhere.com/predict')
+print(response.json())
+```
+
+### Get Prediction for Specific Date
+
+```python
+import requests
+
+# Get prediction for specific date
+params = {'date': '2025-05-21'}
+response = requests.get('http://your-pythonanywhere-username.pythonanywhere.com/predict', params=params)
+print(response.json())
+```
+
+## Response Format
+
+```json
+{
+    "prediction_date": "2025-05-21",
+    "model_used": "model1",
+    "prediction": {
+        "signal": "buy",
+        "confidence": 0.85
+    }
+}
+```
+
+## Response Fields
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `prediction_date` | string | The date for which the prediction is made (YYYY-MM-DD format) |
+| `model_used` | string | Identifier of the ML model that generated the prediction |
+| `prediction.signal` | string | Recommended trading action ("buy", "sell", or "hold") |
+| `prediction.confidence` | number | Confidence score (0.0 to 1.0) for the prediction |
+
+## Query Parameters
+
+| Parameter | Required | Description |
+|-----------|----------|-------------|
+| `date` | No | Target date for prediction (YYYY-MM-DD format). If not provided, returns prediction for current day |
+
+## Error Responses
+
+```json
+{
+    "error": "Invalid date format. Please use YYYY-MM-DD",
+    "status": 400
+}
+```
+
+## Notes
+
+- Without a specified date, the endpoint returns predictions for the current day
+- Historical predictions are available for dates after the model's training period
+- Confidence scores above 0.8 indicate strong signals

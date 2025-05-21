@@ -1,0 +1,146 @@
+---
+title: Model Information Endpoints
+description: Access information about available trading models and their performance metrics
+---
+
+## Get All Models
+
+Retrieve an overview of all available machine learning models and their performance metrics.
+
+- **URL**: `/model-info`
+- **Method**: `GET`
+- **Description**: Provides an overview of all machine learning models currently deployed and available for predictions. This includes their type, general accuracy, and key backtest metrics.
+
+### Usage Example
+
+```python
+import requests
+
+# Get information about all models
+response = requests.get('http://your-pythonanywhere-username.pythonanywhere.com/model-info')
+print(response.json())
+```
+
+### Response Format
+
+```json
+{
+    "models": [
+        {
+            "id": "lstm",
+            "type": "LSTM",
+            "accuracy": 0.89,
+            "backtest_metrics": {
+                "sharpe_ratio": 2.45,
+                "win_rate_pct": 68.5
+            }
+        },
+        {
+            "id": "gru",
+            "type": "GRU",
+            "accuracy": 0.87,
+            "backtest_metrics": {
+                "sharpe_ratio": 2.30,
+                "win_rate_pct": 65.0
+            }
+        }
+    ],
+    "total_models": 2,
+    "last_updated": "2025-05-21"
+}
+```
+
+### Response Fields
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `models` | array | List of available model information |
+| `models[].id` | string | Unique identifier for the model |
+| `models[].type` | string | Machine learning model architecture (e.g., "LSTM", "GRU") |
+| `models[].accuracy` | number | High-level accuracy metric from model's training/validation |
+| `models[].backtest_metrics` | object | Key performance metrics from model's backtesting |
+| `total_models` | number | Total number of models currently deployed |
+| `last_updated` | string | Timestamp of last information update |
+
+## Get Single Model Details
+
+Retrieve detailed information about a specific model.
+
+- **URL**: `/model-info/<model_name>`
+- **Method**: `GET`
+- **Description**: Retrieves detailed information about a specific model, including its internal parameters and comprehensive backtest metrics.
+
+### Path Parameters
+
+| Parameter | Required | Description |
+|-----------|----------|-------------|
+| `model_name` | Yes | The identifier of the model (e.g., "lstm", "gru") |
+
+### Usage Example
+
+```python
+import requests
+
+# Get detailed information about the LSTM model
+model_name = "lstm"
+response = requests.get(f'http://your-pythonanywhere-username.pythonanywhere.com/model-info/{model_name}')
+print(response.json())
+```
+
+### Response Format
+
+```json
+{
+    "model": {
+        "id": "lstm",
+        "type": "LSTM",
+        "parameters": {
+            "layers": 3,
+            "units": 64,
+            "dropout": 0.2
+        },
+        "backtest_metrics": {
+            "sharpe_ratio": 2.45,
+            "max_drawdown_pct": -15.3,
+            "win_rate_pct": 68.5,
+            "total_return_pct": 145.8
+        }
+    },
+    "status": "available",
+    "last_checked": "2025-05-21T10:00:00.000Z"
+}
+```
+
+### Response Fields
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `model.id` | string | The model's identifier |
+| `model.type` | string | The model architecture |
+| `model.parameters` | object | Specific architectural parameters of the model |
+| `model.parameters.layers` | number | Number of neural network layers |
+| `model.parameters.units` | number | Units per layer |
+| `model.parameters.dropout` | number | Dropout rate for regularization |
+| `model.backtest_metrics` | object | Comprehensive historical performance metrics |
+| `model.backtest_metrics.sharpe_ratio` | number | Risk-adjusted return metric |
+| `model.backtest_metrics.max_drawdown_pct` | number | Maximum historical loss percentage |
+| `model.backtest_metrics.win_rate_pct` | number | Percentage of successful trades |
+| `model.backtest_metrics.total_return_pct` | number | Total return percentage |
+| `status` | string | Operational status of the model |
+| `last_checked` | string | Timestamp of last model status check |
+
+## Error Responses
+
+```json
+{
+    "error": "Model not found",
+    "status": 404
+}
+```
+
+## Notes
+
+- The `/model-info` endpoint provides a high-level overview of all models
+- Use `/model-info/<model_name>` for detailed information about a specific model
+- Backtest metrics are calculated using historical data
+- Model status can be "available", "training", or "unavailable"

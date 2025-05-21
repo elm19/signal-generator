@@ -3,43 +3,51 @@ title: API Documentation
 description: Complete guide to the Gold Futures Signal Trading Generator API
 ---
 
-# API Documentation
+The Trading Time Series Forecast API is a Flask-based REST API providing access to machine learning models for trading predictions and analysis. It's designed for ease of use, allowing you to quickly retrieve predictions and model performance metrics.
 
 ## API Base URL
 
-Information about accessing the deployed API.
+The API is deployed and hosted on PythonAnywhere. You can access it via the following base URL:
 
-## Authentication
-
-Details about API security and credentials.
-
-## Available Endpoints
-
-### GET /
-Root endpoint information
-
-### GET /predict
-Signal prediction endpoint
-
-### GET /model-info
-Model information endpoint
-
-### GET /model-info/{model_name}
-Specific model details endpoint
-
-## Error Handling
-
-Standard error codes and their meanings.
-
-## Code Examples
-
-### Using curl
-```bash
-curl -X GET https://api.goldspot-predictor.com/predict
+```
+http://your-pythonanywhere-username.pythonanywhere.com
 ```
 
-### Using Python
+#### Example Request
+
 ```python
 import requests
-response = requests.get('https://api.goldspot-predictor.com/predict')
+
+# Make GET request to the root endpoint
+response = requests.get('http://your-pythonanywhere-username.pythonanywhere.com/')
+print(response.json())
 ```
+
+#### Example Response
+
+```json
+{
+    "api_status": "healthy",
+    "available_endpoints": [
+        {
+            "path": "/",
+            "description": "API information and status"
+        },
+        {
+            "path": "/predict",
+            "description": "Get trading predictions"
+        },
+        {
+            "path": "/model-info",
+            "description": "Get information about available models"
+        }
+    ],
+    "version": "1.0.0"
+}
+```
+
+The response includes:
+- `api_status`: Current health status of the API
+- `available_endpoints`: List of all available API endpoints with descriptions
+- `version`: Current API version number
+

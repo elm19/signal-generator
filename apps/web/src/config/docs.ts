@@ -36,7 +36,7 @@ export const docsConfig: DocsConfig = {
           items: [],
         },
         {
-          href: '/docs/usage/how-to-use',
+          href: '/docs/usage/usage',
           title: {
             en: 'How to Use',
             pt: 'Como Usar',
@@ -58,6 +58,30 @@ export const docsConfig: DocsConfig = {
             pt: 'Documentação da API',
           },
           items: [],
+        },
+        {
+          title: {
+            en: 'API Endpoints',
+            pt: 'Endpoints da API',
+          },
+          items: [
+            {
+              href: '/docs/api/endpoint/predict',
+              title: {
+                en: '/Predict',
+                pt: '/Prever',
+              },
+              items: [],
+            },
+            {
+              href: '/docs/api/endpoint/models_info',
+              title: {
+                en: '/Models Info',
+                pt: '/Informações dos Modelos',
+              },
+              items: [],
+            },
+          ],
         },
       ],
     },

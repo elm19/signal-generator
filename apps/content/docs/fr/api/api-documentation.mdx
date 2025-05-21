@@ -1,0 +1,52 @@
+---
+title: Documentation de l'API
+description: Guide complet de l'API du Générateur de Signaux de Trading sur l'Or
+---
+
+L'API de Prévision des Séries Temporelles est une API REST basée sur Flask qui donne accès aux modèles d'apprentissage automatique pour les prédictions et l'analyse de trading. Elle est conçue pour être facile à utiliser, vous permettant d'obtenir rapidement des prédictions et des métriques de performance des modèles.
+
+## URL de Base de l'API
+
+L'API est déployée et hébergée sur PythonAnywhere. Vous pouvez y accéder via l'URL de base suivante :
+
+```
+https://elm19.pythonanywhere.com
+```
+
+#### Exemple de Requête
+
+```python
+import requests
+
+# Effectuer une requête GET vers le point de terminaison racine
+response = requests.get('https://elm19.pythonanywhere.com/')
+print(response.json())
+```
+
+#### Exemple de Réponse
+
+```json
+{
+    "api_status": "healthy",
+    "available_endpoints": [
+        {
+            "path": "/",
+            "description": "Informations et statut de l'API"
+        },
+        {
+            "path": "/predict",
+            "description": "Obtenir des prédictions de trading"
+        },
+        {
+            "path": "/model-info",
+            "description": "Obtenir des informations sur les modèles disponibles"
+        }
+    ],
+    "version": "1.0.0"
+}
+```
+
+La réponse inclut :
+- `api_status` : État de santé actuel de l'API
+- `available_endpoints` : Liste de tous les points de terminaison API disponibles avec leurs descriptions
+- `version` : Numéro de version actuel de l'API

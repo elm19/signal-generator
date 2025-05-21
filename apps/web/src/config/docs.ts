@@ -2,7 +2,7 @@
  * This file contains the configuration for the documentation
  * to be used by files like:
  * - src/components/command-menu.tsx
- * - src/components/mobile-nav.tsx
+ *                 fr: 'Modèles Supportés', src/components/mobile-nav.tsx
  * - src/app/[locale]/docs/layout.tsx
  * - src/lib/opendocs/components/docs/pager.tsx
  */
@@ -15,7 +15,7 @@ export const docsConfig: DocsConfig = {
       href: '/docs',
       title: {
         en: 'Documentation',
-        pt: 'Documentação',
+        fr: 'Documentation',
       },
     },
   ],
@@ -24,14 +24,14 @@ export const docsConfig: DocsConfig = {
     {
       title: {
         en: 'Getting Started',
-        pt: 'Começando',
+        fr: 'Pour Commencer',
       },
       items: [
         {
           href: '/docs/overview/project-overview',
           title: {
             en: 'Project Overview',
-            pt: 'Visão Geral do Projeto',
+            fr: 'Aperçu du Projet',
           },
           items: [],
         },
@@ -39,7 +39,7 @@ export const docsConfig: DocsConfig = {
           href: '/docs/usage/usage',
           title: {
             en: 'How to Use',
-            pt: 'Como Usar',
+            fr: 'Comment Utiliser',
           },
           items: [],
         },
@@ -48,28 +48,28 @@ export const docsConfig: DocsConfig = {
     {
       title: {
         en: 'API & Integration',
-        pt: 'API e Integração',
+        fr: 'API et Intégration',
       },
       items: [
         {
           href: '/docs/api/api-documentation',
           title: {
             en: 'API Documentation',
-            pt: 'Documentação da API',
+            fr: 'Documentation API',
           },
           items: [],
         },
         {
           title: {
             en: 'API Endpoints',
-            pt: 'Endpoints da API',
+            fr: 'Points de Terminaison API',
           },
           items: [
             {
               href: '/docs/api/endpoint/predict',
               title: {
                 en: 'Predict',
-                pt: 'Prever',
+                fr: 'Prédire',
               },
               items: [],
             },
@@ -77,7 +77,7 @@ export const docsConfig: DocsConfig = {
               href: '/docs/api/endpoint/models-info',
               title: {
                 en: 'Models-info',
-                pt: 'Informações dos Modelos',
+                fr: 'Informations sur les Modèles',
               },
               items: [],
             },
@@ -88,20 +88,20 @@ export const docsConfig: DocsConfig = {
     {
       title: {
         en: 'Technical Documentation',
-        pt: 'Documentação Técnica',
+        fr: 'Documentation Technique',
       },
       items: [
         {
           title: {
             en: 'Data Pipeline',
-            pt: 'Pipeline de Dados',
+            fr: 'Pipeline de Données',
           },
           items: [
             {
               href: '/docs/pipeline/data-collection',
               title: {
                 en: 'Data Collection',
-                pt: 'Coleta de Dados',
+                fr: 'Collecte de Données',
               },
               items: [],
             },
@@ -109,7 +109,7 @@ export const docsConfig: DocsConfig = {
               href: '/docs/pipeline/preprocessing',
               title: {
                 en: 'Data Preprocessing',
-                pt: 'Pré-processamento',
+                fr: 'Prétraitement',
               },
               items: [],
             },
@@ -117,7 +117,7 @@ export const docsConfig: DocsConfig = {
               href: '/docs/pipeline/feature-engineering',
               title: {
                 en: 'Feature Engineering',
-                pt: 'Engenharia de Features',
+                fr: 'Ingénierie des Caractéristiques',
               },
               items: [],
             },
@@ -126,14 +126,14 @@ export const docsConfig: DocsConfig = {
         {
           title: {
             en: 'Model Training',
-            pt: 'Treinamento do Modelo',
+            fr: 'Entraînement du Modèle',
           },
           items: [
             {
               href: '/docs/models/supported-models',
               title: {
                 en: 'Supported Models',
-                pt: 'Modelos Suportados',
+                fr: 'Modelos Suportados',
               },
               items: [],
             },
@@ -141,7 +141,7 @@ export const docsConfig: DocsConfig = {
               href: '/docs/models/training-methodology',
               title: {
                 en: 'Training Methodology',
-                pt: 'Metodologia de Treinamento',
+                fr: 'Méthodologie d\'Entraînement',
               },
               items: [],
             },
@@ -150,14 +150,14 @@ export const docsConfig: DocsConfig = {
         {
           title: {
             en: 'Performance',
-            pt: 'Desempenho',
+            fr: 'Performance',
           },
           items: [
             {
               href: '/docs/performance/backtesting',
               title: {
                 en: 'Backtesting',
-                pt: 'Backtesting',
+                fr: 'Backtesting',
               },
               items: [],
             },
@@ -165,7 +165,7 @@ export const docsConfig: DocsConfig = {
               href: '/docs/performance/metrics',
               title: {
                 en: 'Performance Metrics',
-                pt: 'Métricas de Desempenho',
+                fr: 'Métriques de Performance',
               },
               items: [],
             },
@@ -176,14 +176,14 @@ export const docsConfig: DocsConfig = {
     {
       title: {
         en: 'Development',
-        pt: 'Desenvolvimento',
+        fr: 'Développement',
       },
       items: [
         {
           href: '/docs/development/local-setup',
           title: {
             en: 'Local Setup',
-            pt: 'Configuração Local',
+            fr: 'Configuration Locale',
           },
           items: [],
         },
@@ -191,7 +191,7 @@ export const docsConfig: DocsConfig = {
           href: '/docs/development/contributing',
           title: {
             en: 'Contributing',
-            pt: 'Contribuindo',
+            fr: 'Contribuer',
           },
           items: [],
         },
@@ -200,14 +200,14 @@ export const docsConfig: DocsConfig = {
     {
       title: {
         en: 'Support',
-        pt: 'Suporte',
+        fr: 'Support',
       },
       items: [
         {
           href: '/docs/support/faq',
           title: {
             en: 'FAQ',
-            pt: 'Perguntas Frequentes',
+            fr: 'Questions Fréquentes',
           },
           items: [],
         },
@@ -215,7 +215,7 @@ export const docsConfig: DocsConfig = {
           href: '/docs/support/contact',
           title: {
             en: 'Contact',
-            pt: 'Contato',
+            fr: 'Contact',
           },
           items: [],
         },

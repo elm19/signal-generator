@@ -1,13 +1,13 @@
 import { absoluteUrl } from '@/lib/utils'
 import en from '@/i18n/locales/en.json'
-import pt from '@/i18n/locales/pt.json'
+import fr from '@/i18n/locales/fr.json'
 
 export const siteConfig = {
   name: 'signal-provider',
 
   description: {
     en: 'Advanced time series analysis and trading signal generation platform. Get accurate market insights with our ML-powered signal generator.',
-    pt: 'Plataforma avançada de análise de séries temporais e geração de sinais de negociação.',
+    fr: 'Plateforme avancée d\'analyse de séries temporelles et de génération de signaux de trading.',
   },
 
   url: process.env.NEXT_PUBLIC_APP_URL,

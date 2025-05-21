@@ -99,7 +99,7 @@ and more...
 
 ## 📄 Documentation
 
-Visit https://opendocs.daltonmenezes.com/docs to view the documentation.
+Visit https://signal-generatort-docs-web.vercel.app to view the documentation.
 
 ## 💬 Contributing
 
@@ -115,4 +115,4 @@ That said, there's a bunch of ways you can contribute to this project, like by:
 
 ## License
 
-Licensed under the [MIT license](https://github.com/daltonmenezes/opendocs/blob/main/LICENSE.md).
+Licensed under the [MIT license]

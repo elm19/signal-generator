@@ -1,6 +1,7 @@
 {
-  "name": "opendocs",
+  "name": "trading-signals-docs",
   "private": true,
+  "author": "EL Majdi Walid <walidmajd1@gmail.com>",
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",

@@ -22,7 +22,7 @@ import {
 import type { LocaleOptions } from '@/lib/opendocs/types/i18n'
 
 export const generateStaticParams = () => {
-  return [{ locale: 'en' }, { locale: 'pt' }]
+  return [{ locale: 'en' }, { locale: 'fr' }]
 }
 
 const Vortex = dynamic(() => import('../../components/ui/vortex'), {

@@ -1,0 +1,142 @@
+---
+title: Points de Terminaison d'Information des Modèles
+description: Accédez aux informations sur les modèles de trading disponibles et leurs métriques de performance
+---
+
+## Obtenir Tous les Modèles
+
+Récupérez un aperçu de tous les modèles d'apprentissage automatique disponibles et leurs métriques de performance.
+
+- **URL** : `/model-info`
+- **Méthode** : `GET`
+- **Description** : Fournit un aperçu de tous les modèles d'apprentissage automatique actuellement déployés et disponibles pour les prédictions. Cela inclut leur type, leur précision générale et les principales métriques de backtesting.
+
+### Exemple d'Utilisation
+
+```python
+import requests
+
+# Obtenir les informations sur tous les modèles
+response = requests.get('https://elm19.pythonanywhere.com/model-info')
+print(response.json())
+```
+
+### Format de Réponse
+
+```json
+{
+    "models": [
+        {
+            "id": "lstm",
+            "type": "LSTM",
+            "accuracy": 0.89,
+            "backtest_metrics": {
+                "sharpe_ratio": 2.45,
+                "win_rate_pct": 68.5
+            }
+        },
+        {
+            "id": "gru",
+            "type": "GRU",
+            "accuracy": 0.87,
+            "backtest_metrics": {
+                "sharpe_ratio": 2.30,
+                "win_rate_pct": 65.0
+            }
+        }
+    ],
+    "total_models": 2,
+    "last_updated": "2025-05-21"
+}
+```
+
+### Champs de Réponse
+
+| Champ | Type | Description |
+|-------|------|-------------|
+| `models` | array | Liste des informations sur les modèles disponibles |
+| `models[].id` | string | Identifiant unique du modèle |
+| `models[].type` | string | Architecture du modèle (ex: "LSTM", "GRU") |
+| `models[].accuracy` | number | Métrique de précision de l'entraînement/validation |
+| `models[].backtest_metrics` | object | Métriques clés de performance du backtesting |
+| `total_models` | number | Nombre total de modèles déployés |
+| `last_updated` | string | Horodatage de la dernière mise à jour |
+
+## Obtenir les Détails d'un Modèle Spécifique
+
+Récupérez des informations détaillées sur un modèle spécifique.
+
+- **URL** : `/model-info/<model_name>`
+- **Méthode** : `GET`
+- **Description** : Récupère des informations détaillées sur un modèle spécifique, y compris ses paramètres internes et des métriques complètes de backtesting.
+
+### Paramètres de Chemin
+
+| Paramètre | Requis | Description |
+|-----------|----------|-------------|
+| `model_name` | Oui | L'identifiant du modèle (ex: "lstm", "gru") |
+
+### Exemple d'Utilisation
+
+```python
+import requests
+
+# Obtenir des informations détaillées sur le modèle LSTM
+model_name = "lstm"
+response = requests.get(f'https://elm19.pythonanywhere.com/model-info/{model_name}')
+print(response.json())
+```
+
+### Format de Réponse
+
+```json
+{
+    "model": {
+        "id": "lstm",
+        "type": "LSTM",
+        "parameters": {
+            "layers": 3,
+            "units": 64,
+            "dropout": 0.2
+        },
+        "backtest_metrics": {
+            "sharpe_ratio": 2.45,
+            "max_drawdown_pct": -15.3,
+            "win_rate_pct": 68.5,
+            "total_return_pct": 145.8
+        }
+    },
+    "status": "available",
+    "last_checked": "2025-05-21T10:00:00.000Z"
+}
+```
+
+### Champs de Réponse Détaillés
+
+| Champ | Type | Description |
+|-------|------|-------------|
+| `model.id` | string | Identifiant du modèle |
+| `model.type` | string | Architecture du modèle |
+| `model.parameters` | object | Paramètres architecturaux spécifiques |
+| `model.parameters.layers` | number | Nombre de couches du réseau |
+| `model.parameters.units` | number | Unités par couche |
+| `model.parameters.dropout` | number | Taux de dropout pour la régularisation |
+| `model.backtest_metrics` | object | Métriques complètes de performance historique |
+| `status` | string | État opérationnel du modèle |
+| `last_checked` | string | Horodatage de la dernière vérification |
+
+## Réponses d'Erreur
+
+```json
+{
+    "error": "Modèle non trouvé",
+    "status": 404
+}
+```
+
+## Notes
+
+- Le point de terminaison `/model-info` fournit un aperçu de haut niveau de tous les modèles
+- Utilisez `/model-info/<model_name>` pour des informations détaillées sur un modèle spécifique
+- Les métriques de backtesting sont calculées sur des données historiques
+- L'état du modèle peut être "available", "training" ou "unavailable"

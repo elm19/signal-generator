@@ -1,0 +1,74 @@
+---
+title: Point de Terminaison Predict
+description: Le point de terminaison `/predict` fournit des signaux de trading pour les contrats à terme sur l'or basés sur nos modèles d'apprentissage automatique. Il peut renvoyer des prédictions pour le jour actuel et des dates spécifiques sur demande.
+---
+
+- **URL** : `/predict`
+- **Méthode** : `GET`
+- **Description** : Récupère les prédictions de trading pour les contrats à terme sur l'or, incluant un signal (achat/vente/attente) et un score de confiance.
+
+## Exemples d'Utilisation
+
+### Obtenir la Prédiction du Jour
+
+```python
+import requests
+
+# Obtenir la prédiction pour le jour actuel
+response = requests.get('https://elm19.pythonanywhere.com/predict')
+print(response.json())
+```
+
+### Obtenir une Prédiction pour une Date Spécifique
+
+```python
+import requests
+
+# Obtenir la prédiction pour une date spécifique
+params = {'date': '2025-05-21'}
+response = requests.get('https://elm19.pythonanywhere.com/predict', params=params)
+print(response.json())
+```
+
+## Format de Réponse
+
+```json
+{
+    "prediction_date": "2025-05-21",
+    "model_used": "model1",
+    "prediction": {
+        "signal": "buy",
+        "confidence": 0.85
+    }
+}
+```
+
+## Champs de Réponse
+
+| Champ | Type | Description |
+|-------|------|-------------|
+| `prediction_date` | string | La date pour laquelle la prédiction est faite (format YYYY-MM-DD) |
+| `model_used` | string | Identifiant du modèle ML qui a généré la prédiction |
+| `prediction.signal` | string | Action de trading recommandée ("buy", "sell", ou "hold") |
+| `prediction.confidence` | number | Score de confiance (0.0 à 1.0) pour la prédiction |
+
+## Paramètres de Requête
+
+| Paramètre | Requis | Description |
+|-----------|----------|-------------|
+| `date` | Non | Date cible pour la prédiction (format YYYY-MM-DD). Si non fourni, retourne la prédiction pour le jour actuel |
+
+## Réponses d'Erreur
+
+```json
+{
+    "error": "Format de date invalide. Veuillez utiliser YYYY-MM-DD",
+    "status": 400
+}
+```
+
+## Notes
+
+- Sans date spécifiée, le point de terminaison renvoie les prédictions pour le jour actuel
+- Les prédictions historiques sont disponibles pour les dates postérieures à la période d'entraînement du modèle
+- Les scores de confiance supérieurs à 0.8 indiquent des signaux forts

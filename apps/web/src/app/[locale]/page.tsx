@@ -21,7 +21,9 @@ import {
 
 import type { LocaleOptions } from '@/lib/opendocs/types/i18n'
 
-export const dynamicParams = true
+export const generateStaticParams = () => {
+  return [{ locale: 'en' }, { locale: 'pt' }]
+}
 
 const Vortex = dynamic(() => import('../../components/ui/vortex'), {
   ssr: false,
@@ -51,7 +53,8 @@ export default async function IndexPage({
         </PageHeaderHeading>
 
         <PageHeaderDescription>
-          Get accurate market insights with our ML-powered signal generator. Advanced time series analysis for better trading decisions.
+          Get accurate market insights with our ML-powered signal generator.
+          Advanced time series analysis for better trading decisions.
         </PageHeaderDescription>
 
         <PageActions className="flex-wrap gap-3 sm:gap-0">

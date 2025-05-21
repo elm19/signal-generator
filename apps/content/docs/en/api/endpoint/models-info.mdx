@@ -17,7 +17,7 @@ Retrieve an overview of all available machine learning models and their performa
 import requests
 
 # Get information about all models
-response = requests.get('http://your-pythonanywhere-username.pythonanywhere.com/model-info')
+response = requests.get('https://elm19.pythonanywhere.com/model-info')
 print(response.json())
 ```
 
@@ -83,7 +83,7 @@ import requests
 
 # Get detailed information about the LSTM model
 model_name = "lstm"
-response = requests.get(f'http://your-pythonanywhere-username.pythonanywhere.com/model-info/{model_name}')
+response = requests.get(f'https://elm19.pythonanywhere.com/model-info/{model_name}')
 print(response.json())
 ```
 

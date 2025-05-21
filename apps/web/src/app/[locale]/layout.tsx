@@ -135,7 +135,7 @@ export default function RootLayout({ children, params }: AppLayoutProps) {
           <ThemeProvider
             enableSystem
             attribute="class"
-            defaultTheme="dark"
+            defaultTheme="light"
             disableTransitionOnChange
           >
             <div>

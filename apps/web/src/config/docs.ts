@@ -68,16 +68,16 @@ export const docsConfig: DocsConfig = {
             {
               href: '/docs/api/endpoint/predict',
               title: {
-                en: '/Predict',
-                pt: '/Prever',
+                en: 'Predict',
+                pt: 'Prever',
               },
               items: [],
             },
             {
-              href: '/docs/api/endpoint/models_info',
+              href: '/docs/api/endpoint/models-info',
               title: {
-                en: '/Models Info',
-                pt: '/Informações dos Modelos',
+                en: 'Models-info',
+                pt: 'Informações dos Modelos',
               },
               items: [],
             },

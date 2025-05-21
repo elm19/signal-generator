@@ -16,7 +16,7 @@ description: The `/predict` endpoint provides trading signals for gold futures b
 import requests
 
 # Get prediction for current day
-response = requests.get('http://your-pythonanywhere-username.pythonanywhere.com/predict')
+response = requests.get('https://elm19.pythonanywhere.com/predict')
 print(response.json())
 ```
 
@@ -27,7 +27,7 @@ import requests
 
 # Get prediction for specific date
 params = {'date': '2025-05-21'}
-response = requests.get('http://your-pythonanywhere-username.pythonanywhere.com/predict', params=params)
+response = requests.get('https://elm19.pythonanywhere.com/predict', params=params)
 print(response.json())
 ```
 

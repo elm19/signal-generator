@@ -141,7 +141,7 @@ export const docsConfig: DocsConfig = {
               href: '/docs/models/training-methodology',
               title: {
                 en: 'Training Methodology',
-                fr: 'Méthodologie d\'Entraînement',
+                fr: "Méthodologie d'Entraînement",
               },
               items: [],
             },

@@ -1,71 +1,99 @@
-# opendocs
+# Gold Futures Signal Trading Generator
 
-> Next.js beautifully designed template that you can use for your projects for free with site, blog and docs support. Accessible. Customizable. Open Source.
+> Advanced machine learning-## 📚 Documentation
+
+Visit our comprehensive documentation at [docs.goldspot-predictor.com](https://docs.goldspot-predictor.com) to learn about:
+
+- 📖 Getting Started Guide
+- 🔧 API Integration
+- 🧮 Signal Generation Process
+- 📊 Performance Metrics
+- 💻 Local Development
+
+## 🤝 Contributing
+
+Contributions are welcome! Here's how you can help:
+
+- 🐛 Report bugs and issues
+- 📝 Improve documentation
+- 🔧 Submit bug fixes
+- ✨ Propose new features
+- 🧪 Add tests
+
+Please read our [Contributing Guide](https://docs.goldspot-predictor.com/docs/development/contributing) before submitting a Pull Request.
+
+## 📬 Support & Contact
+
+- 📧 Email: support@goldspot-predictor.com
+- 💬 GitHub Issues: [Create an issue](https://github.com/elm19/GoldSpot-Predictor/issues)
+- 🌐 Website: [goldspot-predictor.com](https://goldspot-predictor.com)
+
+## 📜 License
+
+Licensed under the [MIT License](./LICENSE.md). Copyright © 2025 GoldSpot Predictor.l generation platform for gold futures markets. Access real-time trading signals through our API or use the platform locally for custom trading strategies.
 
 <p align="center">
-  <a href="#opendocs">
-    <img alt="preview" src="./apps/web/public/og.jpg" width="100%">
+  <a href="#features">
+    <img alt="Gold Trading Signal Generator Banner" src="./apps/web/public/og.jpg" width="100%">
   </a>
 </p>
 
 <p align="center">
   <!-- GitHub -->
-  <a href="https://github.com/sponsors/daltonmenezes">
-    <img alt="github url" src="https://img.shields.io/badge/support%20on-github-1C1E26?style=for-the-badge&labelColor=1C1E26&color=a277ff"/>
+  <a href="https://github.com/elm19/GoldSpot-Predictor">
+    <img alt="GitHub Repository" src="https://img.shields.io/badge/view%20on-github-1C1E26?style=for-the-badge&labelColor=1C1E26&color=a277ff"/>
   </a>
-  <!-- Patreon -->
-  <a href="https://www.patreon.com/daltonmenezes">
-    <img alt="patreon url" src="https://img.shields.io/badge/support%20on-patreon-1C1E26?style=for-the-badge&labelColor=1C1E26&color=50e1c7"/>
+  <!-- API Status -->
+  <a href="https://api.goldspot-predictor.com/status">
+    <img alt="API Status" src="https://img.shields.io/badge/api-active-1C1E26?style=for-the-badge&labelColor=1C1E26&color=50e1c7"/>
   </a>
   <!-- Version -->
-  <a href="https://github.com/daltonmenezes/opendocs/releases">
-     <img alt="releases url" src="https://img.shields.io/github/v/release/daltonmenezes/opendocs.svg?style=for-the-badge&labelColor=1C1E26&color=a277ff"/>
+  <a href="https://github.com/elm19/GoldSpot-Predictor/releases">
+     <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-1C1E26?style=for-the-badge&labelColor=1C1E26&color=a277ff"/>
   </a>
   <!-- License -->
-  <a href="https://github.com/daltonmenezes/opendocs/blob/main/LICENSE.md">
-    <img alt="license url" src="https://img.shields.io/badge/license%20-MIT-1C1E26?style=for-the-badge&labelColor=1C1E26&color=50e1c7"/>
+  <a href="https://github.com/elm19/GoldSpot-Predictor/blob/main/LICENSE">
+    <img alt="License" src="https://img.shields.io/badge/license%20-MIT-1C1E26?style=for-the-badge&labelColor=1C1E26&color=50e1c7"/>
   </a>
 </p>
 
 <p align="center">
-  <!-- Deploy to Vercel -->
-    <a href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fdaltonmenezes%2Fopendocs&project-name=my-opendocs&repository-name=my-opendocs&demo-title=OpenDocs&demo-description=Next.js%20beautifully%20designed%20template%20that%20you%20can%20use%20for%20your%20projects%20for%20free%20with%20site%2C%20blog%20and%20docs%20support.%20Accessible.%20Customizable.%20Open%20Source%20with%20i18n%20support.&demo-url=https%3A%2F%2Fopendocs.daltonmenezes.com%2F&root-directory=apps%2Fweb">
-    <img alt="deploy to vercel" src="https://vercel.com/button"/>
+  <!-- API Documentation -->
+  <a href="https://docs.goldspot-predictor.com/api">
+    <img alt="View API Documentation" src="https://img.shields.io/badge/view-api%20docs-1C1E26?style=for-the-badge&labelColor=1C1E26&color=FFD700"/>
   </a>
 </p>
 
-### 🐑 Installation
+## 🚀 Quick Start
 
 ```bash
-npx degit daltonmenezes/opendocs project_name
-```
-```bash
-cd project_name
-pnpm install
-pnpm dev
+git clone https://github.com/elm19/GoldSpot-Predictor
+cd GoldSpot-Predictor
+pip install -r requirements.txt
 ```
 
-## 🎉 Features
+## ⭐ Features
 
-- 🕸️ Site
-- 📄 Docs
-- ✍️ Blog
-  - 🔖 Tags
-  - 📟 Pagination
-  - 🍕 RSS Feed 2.0 (xml and json)
-  - ⏱️ Minutes read time estimation
-  - 🧬 Dynamic or provided OG images for blog posts
-- 🌎 i18n
-- 💬 MDX
-- 📍 Sitemap
-- 🔍 SEO
-- 🌓 Dark/Light mode
-- 💅 Tailwind CSS
-- 🧱 Shadcn components
-- 📐 Responsive
-- 🧬 Accessible
-- 🤖 Customizable
-- 🚀 Open Source
+### Trading Capabilities
+- 🎯 Real-time trading signals for gold futures
+- 📊 Advanced technical analysis integration
+- 🤖 Machine learning-powered predictions
+- ⚡ Low-latency API access
+- 📈 Comprehensive backtesting framework
+
+### Technical Features
+- 🧠 LSTM & GRU neural networks
+- 📡 Real-time data processing
+- 🔄 Automated model retraining
+- 📊 Performance analytics dashboard
+- 🛡️ Risk management integration
+
+### Development
+- 🐍 Python-based architecture
+- 🔌 RESTful API
+- 📚 Comprehensive documentation
+- 🧪 Extensive testing suite
+- 🔓 Open source
 
 and more...
 

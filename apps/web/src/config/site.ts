@@ -3,11 +3,11 @@ import en from '@/i18n/locales/en.json'
 import pt from '@/i18n/locales/pt.json'
 
 export const siteConfig = {
-  name: 'opendocs',
+  name: 'signal-provider',
 
   description: {
-    en: en.site.description,
-    pt: pt.site.description,
+    en: 'Advanced time series analysis and trading signal generation platform. Get accurate market insights with our ML-powered signal generator.',
+    pt: 'Plataforma avançada de análise de séries temporais e geração de sinais de negociação.',
   },
 
   url: process.env.NEXT_PUBLIC_APP_URL,
@@ -22,24 +22,24 @@ export const siteConfig = {
   },
 
   app: {
-    latestVersion: '3.0.8',
+    latestVersion: '1.0.0',
   },
 
   author: {
-    name: 'Dalton Menezes',
-    site: 'https://daltonmenezes.com',
+    name: 'EL Majdi Walid',
+    site: './',
   },
 
   links: {
     twitter: {
       label: 'Twitter',
-      username: '@daltonmenezes',
-      url: 'https://twitter.com/daltonmenezes',
+      username: '@elmajdiwalid',
+      url: 'https://twitter.com/elmajdiwalid',
     },
 
     github: {
       label: 'GitHub',
-      url: 'https://github.com/daltonmenezes/opendocs',
+      url: 'https://github.com/elm19/GoldSpot-Predictor',
     },
   },
 } as const

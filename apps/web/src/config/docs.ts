@@ -13,7 +13,6 @@ export const docsConfig: DocsConfig = {
   mainNav: [
     {
       href: '/docs',
-
       title: {
         en: 'Documentation',
         pt: 'Documentação',
@@ -27,110 +26,173 @@ export const docsConfig: DocsConfig = {
         en: 'Getting Started',
         pt: 'Começando',
       },
-
       items: [
         {
-          href: '/docs',
-
+          href: '/docs/overview/project-overview',
           title: {
-            en: 'Introduction',
-            pt: 'Introdução',
+            en: 'Project Overview',
+            pt: 'Visão Geral do Projeto',
           },
-
           items: [],
         },
-
         {
-          href: '/docs/adding-new-docs',
-
+          href: '/docs/usage/how-to-use',
           title: {
-            en: 'Adding new docs',
-            pt: 'Adicionando novos documentos',
+            en: 'How to Use',
+            pt: 'Como Usar',
           },
-
           items: [],
         },
-
+      ],
+    },
+    {
+      title: {
+        en: 'API & Integration',
+        pt: 'API e Integração',
+      },
+      items: [
         {
-          href: '/docs/customizing',
-
+          href: '/docs/api/api-documentation',
           title: {
-            en: 'Customizing',
-            pt: 'Personalizando',
+            en: 'API Documentation',
+            pt: 'Documentação da API',
           },
-
           items: [],
         },
-
+      ],
+    },
+    {
+      title: {
+        en: 'Technical Documentation',
+        pt: 'Documentação Técnica',
+      },
+      items: [
         {
           title: {
-            en: 'MDX',
+            en: 'Data Pipeline',
+            pt: 'Pipeline de Dados',
           },
-
-          label: {
-            en: 'New',
-            pt: 'Novo',
-          },
-
           items: [
             {
-              href: '/docs/mdx/frontmatter',
-
+              href: '/docs/pipeline/data-collection',
               title: {
-                en: 'Frontmatter',
-                pt: 'Cabeçalho de metadados',
+                en: 'Data Collection',
+                pt: 'Coleta de Dados',
               },
-
-              label: {
-                en: 'New',
-                pt: 'Novo',
-              },
-
               items: [],
             },
-
             {
-              href: '/docs/mdx/code',
-
+              href: '/docs/pipeline/preprocessing',
               title: {
-                en: 'Code',
-                pt: 'Código',
+                en: 'Data Preprocessing',
+                pt: 'Pré-processamento',
               },
-
-              label: {
-                en: 'New',
-                pt: 'Novo',
-              },
-
               items: [],
             },
-
             {
-              href: '/docs/mdx/components',
-
+              href: '/docs/pipeline/feature-engineering',
               title: {
-                en: 'Components',
-                pt: 'Componentes',
+                en: 'Feature Engineering',
+                pt: 'Engenharia de Features',
               },
-
-              label: {
-                en: 'New',
-                pt: 'Novo',
-              },
-
               items: [],
             },
           ],
         },
-
         {
-          href: '/docs/changelog',
-
           title: {
-            en: 'Changelog',
-            pt: 'Histórico de alterações',
+            en: 'Model Training',
+            pt: 'Treinamento do Modelo',
           },
-
+          items: [
+            {
+              href: '/docs/models/supported-models',
+              title: {
+                en: 'Supported Models',
+                pt: 'Modelos Suportados',
+              },
+              items: [],
+            },
+            {
+              href: '/docs/models/training-methodology',
+              title: {
+                en: 'Training Methodology',
+                pt: 'Metodologia de Treinamento',
+              },
+              items: [],
+            },
+          ],
+        },
+        {
+          title: {
+            en: 'Performance',
+            pt: 'Desempenho',
+          },
+          items: [
+            {
+              href: '/docs/performance/backtesting',
+              title: {
+                en: 'Backtesting',
+                pt: 'Backtesting',
+              },
+              items: [],
+            },
+            {
+              href: '/docs/performance/metrics',
+              title: {
+                en: 'Performance Metrics',
+                pt: 'Métricas de Desempenho',
+              },
+              items: [],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      title: {
+        en: 'Development',
+        pt: 'Desenvolvimento',
+      },
+      items: [
+        {
+          href: '/docs/development/local-setup',
+          title: {
+            en: 'Local Setup',
+            pt: 'Configuração Local',
+          },
+          items: [],
+        },
+        {
+          href: '/docs/development/contributing',
+          title: {
+            en: 'Contributing',
+            pt: 'Contribuindo',
+          },
+          items: [],
+        },
+      ],
+    },
+    {
+      title: {
+        en: 'Support',
+        pt: 'Suporte',
+      },
+      items: [
+        {
+          href: '/docs/support/faq',
+          title: {
+            en: 'FAQ',
+            pt: 'Perguntas Frequentes',
+          },
+          items: [],
+        },
+        {
+          href: '/docs/support/contact',
+          title: {
+            en: 'Contact',
+            pt: 'Contato',
+          },
           items: [],
         },
       ],

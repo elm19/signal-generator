@@ -39,22 +39,24 @@ export default async function IndexPage({
   return (
     <div className="container relative">
       <PageHeader>
-        <Announcement title={t('site.announcement')} href="/docs" />
+        <Announcement title="Welcome to Signal Provider" href="/docs" />
 
         <PageHeaderHeading>
           <FlipWords
-            words={['site', 'blog', 'docs']}
+            words={['Signals', 'Analysis', 'Trading']}
             className="text-9xl -z-10"
           />
 
-          <TextGenerateEffect words={t('site.heading')} />
+          <TextGenerateEffect words="Advanced Time Series Analysis & Trading Signals" />
         </PageHeaderHeading>
 
-        <PageHeaderDescription>{t('site.description')}</PageHeaderDescription>
+        <PageHeaderDescription>
+          Get accurate market insights with our ML-powered signal generator. Advanced time series analysis for better trading decisions.
+        </PageHeaderDescription>
 
         <PageActions className="flex-wrap gap-3 sm:gap-0">
           <Link href="/docs" className={cn(buttonVariants())}>
-            {t('site.buttons.get_started')}
+            View Documentation
           </Link>
 
           <Link
@@ -65,28 +67,9 @@ export default async function IndexPage({
             className={cn(buttonVariants({ variant: 'outline' }))}
           >
             <Icons.gitHub className="mr-2 size-4" />
-            {siteConfig.links.github.label}
-          </Link>
-
-          <Link
-            target="_blank"
-            className={cn(
-              buttonVariants({ variant: 'outline' }),
-              'flex gap-2 group'
-            )}
-            href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fdaltonmenezes%2Fopendocs&project-name=my-opendocs&repository-name=my-opendocs&demo-title=OpenDocs&demo-description=Next.js%20beautifully%20designed%20template%20that%20you%20can%20use%20for%20your%20projects%20for%20free%20with%20site%2C%20blog%20and%20docs%20support.%20Accessible.%20Customizable.%20Open%20Source%20with%20i18n%20support.&demo-url=https%3A%2F%2Fopendocs.daltonmenezes.com%2F&root-directory=apps%2Fweb"
-          >
-            <span className="pr-3 mr-1 border border-transparent border-r-border group-hover:border-r-black/50">
-              ▲
-            </span>
-            {t('site.buttons.deploy_vercel')}
+            View Source
           </Link>
         </PageActions>
-
-        <InstallationBox
-          className="w-full relative max-w-[35rem] flex flex-wrap items-center pl-4 pr-12"
-          __rawString__="npx degit daltonmenezes/opendocs project_name"
-        />
 
         <div className="fixed left-0 -top-40 size-full -z-10 overflow-hidden">
           <Vortex
@@ -103,35 +86,35 @@ export default async function IndexPage({
       <section className="flex flex-col gap-4">
         <div className="grid grid-cols-2 gap-4 lg:grid-cols-2 2xl:grid-cols-4">
           <FeaturedCard
-            icon="🧬"
-            title="Next.js"
-            description={t('site.featured_cards.nextjs.description')}
+            icon="📈"
+            title="Time Series Analysis"
+            description="Advanced analysis of market data using state-of-the-art time series techniques"
           />
 
           <FeaturedCard
-            icon="⚡️"
-            title="Shadcn"
-            description={t('site.featured_cards.shadcn.description')}
+            icon="🤖"
+            title="ML Predictions"
+            description="Machine learning models trained on historical data for accurate signal generation"
           />
 
           <FeaturedCard
-            icon="🚀"
-            title="Tailwind"
-            description={t('site.featured_cards.tailwind.description')}
+            icon="⚡"
+            title="Real-time Signals"
+            description="Get trading signals in real-time with our high-performance engine"
           />
 
           <FeaturedCard
-            icon="🌍"
-            title="i18n"
-            description={t('site.featured_cards.i18n.description')}
+            icon="📊"
+            title="Rich Analytics"
+            description="Comprehensive analytics and visualization of market trends and signals"
           />
         </div>
 
         <FeaturedCard
-          icon="+"
+          icon="🎯"
           orientation="horizontal"
-          title={t('site.featured_cards.more.title')}
-          description={t('site.featured_cards.more.description')}
+          title="Precision Trading"
+          description="Make informed trading decisions with our comprehensive suite of tools and analysis"
         />
       </section>
     </div>

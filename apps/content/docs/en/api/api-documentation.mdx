@@ -1,0 +1,45 @@
+---
+title: API Documentation
+description: Complete guide to the Gold Futures Signal Trading Generator API
+---
+
+# API Documentation
+
+## API Base URL
+
+Information about accessing the deployed API.
+
+## Authentication
+
+Details about API security and credentials.
+
+## Available Endpoints
+
+### GET /
+Root endpoint information
+
+### GET /predict
+Signal prediction endpoint
+
+### GET /model-info
+Model information endpoint
+
+### GET /model-info/{model_name}
+Specific model details endpoint
+
+## Error Handling
+
+Standard error codes and their meanings.
+
+## Code Examples
+
+### Using curl
+```bash
+curl -X GET https://api.goldspot-predictor.com/predict
+```
+
+### Using Python
+```python
+import requests
+response = requests.get('https://api.goldspot-predictor.com/predict')
+```

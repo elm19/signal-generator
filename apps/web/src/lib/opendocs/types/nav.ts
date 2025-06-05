@@ -4,7 +4,8 @@ import type { LocalizedRecord } from './i18n'
 export interface NavItem {
   title: LocalizedRecord
   label?: LocalizedRecord
-
+  description?: LocalizedRecord
+  keywords?: LocalizedRecord // Hidden keywords to improve search functionality
   href?: string
   disabled?: boolean
   external?: boolean

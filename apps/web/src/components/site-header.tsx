@@ -27,6 +27,7 @@ export async function SiteHeader() {
           messages={{
             docs: t('words.docs'),
             blog: t('words.blog'),
+            dashboard: t('words.dashboard'),
           }}
         />
 

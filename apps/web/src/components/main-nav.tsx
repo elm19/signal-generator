@@ -9,6 +9,7 @@ interface MainNavProps {
   messages: {
     docs: string
     blog: string
+    dashboard: string
   }
 }
 
@@ -26,6 +27,17 @@ export function MainNav({ messages }: MainNavProps) {
       </Link>
 
       <nav className="flex items-center gap-4 text-sm lg:gap-6">
+        <Link
+          href="/dashboard"
+          className={cn(
+            'hover:text-foreground/80 transition-colors',
+            pathname.includes('/dashboard')
+              ? 'dark:text-primary-active'
+              : 'text-foreground/60'
+          )}
+        >
+          {messages.dashboard}
+        </Link>
         <Link
           href="/blog"
           className={cn(

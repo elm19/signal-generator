@@ -35,129 +35,133 @@ import { useBlogConfig } from '@/lib/opendocs/hooks/use-blog-config'
 import { getObjectValueByLocale } from '@/lib/opendocs/utils/locale'
 import { allBlogs } from 'contentlayer/generated'
 
-function DocsCommandMenu({
-  runCommand,
-  messages,
-}: {
-  runCommand: (command: () => unknown) => void
-  messages: {
-    docs: string
-  }
-}) {
-  const router = useRouter()
-  const docsConfig = useDocsConfig()
+// function DocsCommandMenu({
+//   runCommand,
+//   messages,
+// }: {
+//   runCommand: (command: () => unknown) => void
+//   messages: {
+//     docs: string
+//   }
+// }) {
+//   const router = useRouter()
+//   const docsConfig = useDocsConfig()
 
-  function renderItems(items: NavItemWithChildren[]) {
-    return items.map((navItem) => {
-      if (!navItem.href) {
-        return (
-          <Fragment
-            key={getObjectValueByLocale(
-              navItem.title,
-              docsConfig.currentLocale
-            )}
-          >
-            <CommandGroup
-              heading={getObjectValueByLocale(
-                navItem.title,
-                docsConfig.currentLocale
-              )}
-            >
-              {renderItems(navItem.items)}
-            </CommandGroup>
-          </Fragment>
-        )
-      }
+//   function renderItems(items: NavItemWithChildren[]) {
+//     return items.map((navItem) => {
+//       if (!navItem.href) {
+//         return (
+//           <Fragment
+//             key={getObjectValueByLocale(
+//               navItem.title,
+//               docsConfig.currentLocale
+//             )}
+//           >
+//             <CommandGroup
+//               heading={getObjectValueByLocale(
+//                 navItem.title,
+//                 docsConfig.currentLocale
+//               )}
+//             >
+//               {renderItems(navItem.items)}
+//             </CommandGroup>
+//           </Fragment>
+//         )
+//       }
 
-      return (
-        <Fragment key={navItem.href}>
-          <CommandItem
-            value={getObjectValueByLocale(
-              navItem.title,
-              docsConfig.currentLocale
-            )}
-            onSelect={() => {
-              runCommand(() => router.push(navItem.href as string))
-            }}
-          >
-            <div className="mr-2 flex size-4 items-center justify-center">
-              <CircleIcon className="size-3" />
-            </div>
+//       return (
+//         <Fragment key={navItem.href}>
+//           <CommandItem
+//             value={`${getObjectValueByLocale(navItem.title, docsConfig.currentLocale)} ${getObjectValueByLocale(navItem.keywords || '', docsConfig.currentLocale)}`}
+//             onSelect={() => {
+//               runCommand(() => router.push(navItem.href as string))
+//             }}
+//           >
+//             <div className="mr-2 flex size-4 items-center justify-center">
+//               <CircleIcon className="size-3" />
+//             </div>
 
-            {getObjectValueByLocale(navItem.title, docsConfig.currentLocale)}
-          </CommandItem>
+//             <div className="flex flex-col gap-1">
+//               <span className="font-medium">
+//                 {getObjectValueByLocale(
+//                   navItem.title,
+//                   docsConfig.currentLocale
+//                 )}
+//               </span>
+//             </div>
+//           </CommandItem>
 
-          {navItem?.items?.length > 0 && (
-            <CommandGroup>{renderItems(navItem.items)}</CommandGroup>
-          )}
-        </Fragment>
-      )
-    })
-  }
+//           {navItem?.items?.length > 0 && (
+//             <CommandGroup>{renderItems(navItem.items)}</CommandGroup>
+//           )}
+//         </Fragment>
+//       )
+//     })
+//   }
 
-  return (
-    <CommandGroup heading={messages.docs}>
-      {docsConfig.docs.sidebarNav.map((group) => (
-        <CommandGroup
-          key={getObjectValueByLocale(group.title, docsConfig.currentLocale)}
-          heading={getObjectValueByLocale(
-            group.title,
-            docsConfig.currentLocale
-          )}
-        >
-          {renderItems(group.items)}
-        </CommandGroup>
-      ))}
-    </CommandGroup>
-  )
-}
+//   return (
+//     <CommandGroup heading={messages.docs}>
+//       {docsConfig.docs.sidebarNav.map((group) => (
+//         <CommandGroup
+//           key={getObjectValueByLocale(group.title, docsConfig.currentLocale)}
+//           heading={getObjectValueByLocale(
+//             group.title,
+//             docsConfig.currentLocale
+//           )}
+//         >
+//           {renderItems(group.items)}
+//         </CommandGroup>
+//       ))}
+//     </CommandGroup>
+//   )
+// }
 
-function BlogCommandMenu({
-  runCommand,
-  messages,
-}: {
-  runCommand: (command: () => unknown) => void
-  messages: {
-    blog: string
-  }
-}) {
-  const router = useRouter()
-  const locale = useLocale()
+// function BlogCommandMenu({
+//   runCommand,
+//   messages,
+// }: {
+//   runCommand: (command: () => unknown) => void
+//   messages: {
+//     blog: string
+//   }
+// }) {
+//   const router = useRouter()
+//   const locale = useLocale()
 
-  const posts = useMemo(() => {
-    return allBlogs.filter((post) => {
-      const [postLocale] = post.slugAsParams.split('/')
+//   const posts = useMemo(() => {
+//     return allBlogs.filter((post) => {
+//       const [postLocale] = post.slugAsParams.split('/')
 
-      return postLocale === locale
-    })
-  }, [locale])
+//       return postLocale === locale
+//     })
+//   }, [locale])
 
-  return (
-    <CommandGroup heading={messages.blog}>
-      {posts.map((post) => (
-        <CommandItem
-          key={post._id}
-          value={`${post.title} ${post.excerpt} ${post.tags.join(' ')}`}
-          onSelect={() => {
-            const [, ...slugs] = post.slugAsParams.split('/')
-            const slug = slugs.join('/')
+//   return (
+//     <CommandGroup heading={messages.blog}>
+//       {posts.map((post) => (
+//         <CommandItem
+//           key={post._id}
+//           value={`${post.title} ${post.excerpt} ${post.tags.join(' ')}`}
+//           onSelect={() => {
+//             const [, ...slugs] = post.slugAsParams.split('/')
+//             const slug = slugs.join('/')
 
-            runCommand(() => router.push(`/blog/${slug}`))
-          }}
-        >
-          <div className="mx-1 flex size-4 items-center justify-center">
-            <FileTextIcon className="size-4" />
-          </div>
+//             runCommand(() => router.push(`/blog/${slug}`))
+//           }}
+//         >
+//           <div className="mx-1 flex size-4 items-center justify-center">
+//             <FileTextIcon className="size-4" />
+//           </div>
 
-          <div className="flex flex-col gap-1 p-2 w-full">
-            <h1 className="text-lg">{post.title}</h1>
-            <p className="truncate">{post.excerpt}</p>
-          </div>
-        </CommandItem>
-      ))}
-    </CommandGroup>
-  )
-}
+//           <div className="flex flex-col gap-1 p-2 w-full">
+//             <h1 className="text-lg">{post.title}</h1>
+//             <p className="truncate">{post.excerpt}</p>
+//           </div>
+//         </CommandItem>
+//       ))}
+//     </CommandGroup>
+//   )
+// }
 
 interface CommandMenuProps extends AlertDialogProps {
   messages: {
@@ -216,6 +220,45 @@ export function CommandMenu({ messages, ...props }: CommandMenuProps) {
     [docsConfig, blogConfig]
   )
 
+  const locale = useLocale()
+
+  const searchItems = useMemo(() => {
+    // Get blog items
+    const blogItems = allBlogs
+      .filter((post) => {
+        const [postLocale] = post.slugAsParams.split('/')
+        return postLocale === locale
+      })
+      .map((post) => ({
+        title: post.title,
+        href: `/blog/${post.slugAsParams.split('/').slice(1).join('/')}`,
+        content: `${post.excerpt} ${post.tags.join(' ')}`,
+        type: 'blog',
+      }))
+
+    // Get docs items from sidebar navigation
+    const getDocsItem = (item: NavItemWithChildren) => ({
+      title: getObjectValueByLocale(item.title, docsConfig.currentLocale),
+      href: item.href || '#',
+      content: getObjectValueByLocale(
+        (item.keywords as Record<string, string>) || {},
+        docsConfig.currentLocale
+      ),
+      type: 'docs' as const,
+    })
+
+    const docsItems = docsConfig.docs.sidebarNav.flatMap((group) =>
+      group.items.flatMap((item) => {
+        if (!item.href && item.items) {
+          return item.items.map(getDocsItem)
+        }
+        return [getDocsItem(item)]
+      })
+    )
+
+    return [...blogItems, ...docsItems]
+  }, [docsConfig, locale, docsConfig.currentLocale])
+
   return (
     <>
       <Button
@@ -258,7 +301,6 @@ export function CommandMenu({ messages, ...props }: CommandMenuProps) {
                   }
                 >
                   <FileIcon className="mr-2 size-4" />
-
                   {getObjectValueByLocale(
                     navItem.title,
                     docsConfig.currentLocale
@@ -267,21 +309,31 @@ export function CommandMenu({ messages, ...props }: CommandMenuProps) {
               ))}
           </CommandGroup>
 
-          <DocsCommandMenu
-            runCommand={runCommand}
-            messages={{
-              docs: messages.docs,
-            }}
-          />
-
           <CommandSeparator className="my-1" />
 
-          <BlogCommandMenu
-            runCommand={runCommand}
-            messages={{
-              blog: messages.blog,
-            }}
-          />
+          <CommandGroup heading="Search Results">
+            {searchItems.map((item) => (
+              <CommandItem
+                key={item.href}
+                value={`${item.title} ${item.content}`}
+                onSelect={() => runCommand(() => router.push(item.href))}
+              >
+                {item.type === 'blog' ? (
+                  <FileTextIcon className="mr-2 size-4" />
+                ) : (
+                  <FileIcon className="mr-2 size-4" />
+                )}
+                <div className="flex flex-col gap-1">
+                  <span className="font-medium">{item.title}</span>
+                  {/* {item.content && (
+                    <span className="text-lg text-muted-foreground truncate ">
+                      {item.content}
+                    </span>
+                  )} */}
+                </div>
+              </CommandItem>
+            ))}
+          </CommandGroup>
 
           <CommandSeparator className="my-1" />
 

@@ -41,14 +41,28 @@ export function DocsSidebarNav({
     >
       {items.map((item, index) => (
         <div key={index} className={cn('pb-4')}>
-          <h4
-            className={cn(
-              !isMobile && 'mb-1 rounded-md px-2 py-1 text-sm font-semibold',
-              isMobile && 'font-medium'
-            )}
-          >
-            {getObjectValueByLocale(item.title, locale)}
-          </h4>
+          {item.href ? (
+            <DesktopLink
+              href={item.href}
+              className={cn(
+                'block',
+                !isMobile &&
+                  'mb-1 rounded-md px-2 py-1 text-sm font-semibold hover:underline',
+                isMobile && 'font-medium'
+              )}
+            >
+              {getObjectValueByLocale(item.title, locale)}
+            </DesktopLink>
+          ) : (
+            <h4
+              className={cn(
+                !isMobile && 'mb-1 rounded-md px-2 py-1 text-sm font-semibold',
+                isMobile && 'font-medium'
+              )}
+            >
+              {getObjectValueByLocale(item.title, locale)}
+            </h4>
+          )}
           {item?.items?.length > 0 && (
             <DocsSidebarNavItems
               items={item.items}

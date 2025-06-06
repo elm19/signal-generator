@@ -6,6 +6,8 @@ export const modelInfoList = [
     dateCreated: '2025-01-15',
     loss: 0.05,
     accuracy: 95.2,
+    precision: 0.92,
+    recall: 0.88,
     backtestingMetrics: {
       sharpeRatio: 1.8,
       maxDrawdown: 10.5,
@@ -20,6 +22,8 @@ export const modelInfoList = [
     dateCreated: '2025-02-20',
     loss: 0.04,
     accuracy: 96.1,
+    precision: 0.94,
+    recall: 0.9,
     backtestingMetrics: {
       sharpeRatio: 2.0,
       maxDrawdown: 9.8,
@@ -34,11 +38,13 @@ export const modelInfoList = [
     dateCreated: '2025-03-12',
     loss: 0.06,
     accuracy: 94.7,
+    precision: 0.89,
+    recall: 0.85,
     backtestingMetrics: {
       sharpeRatio: 1.6,
       maxDrawdown: 11.2,
       annualizedReturn: 11.0,
     },
-    market: 'gold',
+    market: 'silver',
   },
 ]

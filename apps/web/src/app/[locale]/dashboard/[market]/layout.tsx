@@ -19,6 +19,31 @@ interface DashboardLayoutProps {
 
 export const dynamicParams = true
 
+// Added dynamic metadata generation for the market layout
+export async function generateMetadata({
+  params,
+}: {
+  params: { locale: string; market: string }
+}): Promise<Metadata> {
+  setRequestLocale(params.locale)
+
+  return {
+    title: {
+      default: `${params.market} Market`,
+      template: `%s - Market`,
+    },
+    description: `Explore the ${params.market} market and its trading signals for informed decisions.`,
+    keywords: [
+      'market',
+      'trading signals',
+      'analysis',
+      'performance',
+      'insights',
+    ],
+    authors: [{ name: 'Markets Team' }],
+  }
+}
+
 export default async function DashboardLayout({
   children,
   params,

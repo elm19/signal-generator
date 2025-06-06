@@ -172,7 +172,7 @@ export default function TradingChart() {
         style={{
           width: '100%',
           height: '100%',
-          transition: 'width 0.5s ease-in-out, height 0.5s ease-in-out',
+          transition: 'all 0.5s ease-in-out', // Unified transition for width and height
         }}
       />
     </div>

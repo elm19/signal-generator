@@ -41,20 +41,20 @@ export default async function IndexPage({
   return (
     <div className="container relative">
       <PageHeader>
-        <Announcement title="Welcome to Signal Provider" href="/docs" />
+        <Announcement title="Welcome to getTheSignal" href="/dashboard" />
 
         <PageHeaderHeading>
           <FlipWords
-            words={['Signals', 'Analysis', 'Trading']}
+            words={['Get', 'Trading', 'Signals']}
             className="text-9xl -z-10"
           />
 
-          <TextGenerateEffect words="Advanced Time Series Analysis & Trading Signals" />
+          <TextGenerateEffect words="Market Signals Across Diverse Sectors" />
         </PageHeaderHeading>
 
         <PageHeaderDescription>
-          Get accurate market insights with our ML-powered signal generator.
-          Advanced time series analysis for better trading decisions.
+          Explore our dashboard for real-time insights powered by Deep Learning
+          and Machine Learning, and visit the docs for detailed guidance.
         </PageHeaderDescription>
 
         <PageActions className="flex-wrap gap-3 sm:gap-0">
@@ -63,14 +63,10 @@ export default async function IndexPage({
           </Link>
 
           <Link
-            target="_blank"
-            rel="noreferrer"
-            href={siteConfig.links.github.url}
-            title={siteConfig.links.github.label}
+            href="/dashboard"
             className={cn(buttonVariants({ variant: 'outline' }))}
           >
-            <Icons.gitHub className="mr-2 size-4" />
-            View Source
+            Explore Dashboard
           </Link>
         </PageActions>
 

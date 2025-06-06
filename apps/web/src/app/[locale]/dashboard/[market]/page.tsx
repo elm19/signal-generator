@@ -27,7 +27,9 @@ export default function MarketPage() {
           <TradingChart />
         </div>
         <div className="lg:w-1/3">
-          {modelInfo && <ModelInfoCard modelInfo={modelInfo} />}
+          {modelInfo && (
+            <ModelInfoCard pageContext={'models'} modelInfo={modelInfo} />
+          )}
         </div>
       </div>
 

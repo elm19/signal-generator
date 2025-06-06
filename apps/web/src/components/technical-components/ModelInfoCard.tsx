@@ -23,7 +23,14 @@ interface ModelInfo {
   market: string
 }
 
-export function ModelInfoCard({ modelInfo }: { modelInfo: ModelInfo }) {
+// Fixed persistent formatting issue in the `ModelInfoCard` component
+export function ModelInfoCard({
+  modelInfo,
+  pageContext,
+}: {
+  modelInfo: ModelInfo
+  pageContext: 'market' | 'models'
+}) {
   const backtestingMetrics = modelInfo.backtestingMetrics || {
     sharpeRatio: 'N/A',
     maxDrawdown: 'N/A',
@@ -94,36 +101,62 @@ export function ModelInfoCard({ modelInfo }: { modelInfo: ModelInfo }) {
           </AccordionItem>
         </Accordion>
         <p className="mt-4 text-sm text-gray-600">
-          For more details about this model(its training methodology, underlying
-          architecture), please{' '}
+          For more details about this model (its training methodology,
+          underlying architecture), please visit{' '}
           <a href="#" className="text-blue-500 underline">
-            visit here
+            here
           </a>
           .
         </p>
       </Card>
 
-      <Alert className=" backdrop-blur-sm border rounded-lg p-4 shadow-lg hover:shadow-xl transition-shadow duration-200">
+      <Alert className="backdrop-blur-sm border rounded-lg p-4 shadow-lg hover:shadow-xl transition-shadow duration-200">
         <p className="text-sm text-muted-foreground">
-          Want to explore more models for {modelInfo.market}?{' '}
-          <a
-            href={`/models/${modelInfo.market.toLowerCase()}`}
-            className="text-primary hover:text-primary/80 font-medium inline-flex items-center gap-1"
-          >
-            View all models
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              className="w-4 h-4"
-            >
-              <path
-                fillRule="evenodd"
-                d="M5 10a.75.75 0 01.75-.75h6.638L10.23 7.29a.75.75 0 111.04-1.08l3.5 3.25a.75.75 0 010 1.08l-3.5 3.25a.75.75 0 11-1.04-1.08l2.158-1.96H5.75A.75.75 0 015 10z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </a>
+          {pageContext === 'market' ? (
+            <>
+              Want to see its predictions for {modelInfo.market}?{' '}
+              <a
+                href={`/dashboard/${modelInfo.market.toLowerCase()}`}
+                className="text-primary hover:text-primary/80 font-medium inline-flex items-center gap-1"
+              >
+                Click here
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  className="w-4 h-4"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M5 10a.75.75 0 01.75-.75h6.638L10.23 7.29a.75.75 0 111.04-1.08l3.5 3.25a.75.75 0 010 1.08l-3.5 3.25a.75.75 0 11-1.04-1.08l2.158-1.96H5.75A.75.75 0 015 10z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </a>
+            </>
+          ) : (
+            <>
+              Want to explore more models for {modelInfo.market}?{' '}
+              <a
+                href={`/models`}
+                className="text-primary hover:text-primary/80 font-medium inline-flex items-center gap-1"
+              >
+                View all models
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  className="w-4 h-4"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M5 10a.75.75 0 01.75-.75h6.638L10.23 7.29a.75.75 0 111.04-1.08l3.5 3.25a.75.75 0 010 1.08l-3.5 3.25a.75.75 0 11-1.04-1.08l2.158-1.96H5.75A.75.75 0 015 10z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </a>
+            </>
+          )}
         </p>
       </Alert>
     </div>

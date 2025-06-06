@@ -6,6 +6,8 @@ import { Callout } from '@/components/callout'
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
 import { DocsSidebarNav } from '@/components/docs/sidebar-nav'
 import { Button } from '@/components/ui/button'
+import Head from 'next/head'
+import { useState } from 'react'
 
 const popularItems = [
   {
@@ -48,64 +50,82 @@ const popularItems = [
 
 export default function NewPage() {
   const router = useRouter()
+  const [selectedMarket, setSelectedMarket] = useState('')
 
   const handleMarketSelection = (marketAbbreviation: string) => {
+    setSelectedMarket(marketAbbreviation)
     router.push(`/dashboard/${marketAbbreviation}`)
   }
 
   const handleViewAllModels = () => {
-    router.push('/dashboard/models')
+    router.push('/models')
   }
 
   return (
-    <main className="container mx-auto py-8">
-      <Callout title="Welcome to the Dashboard" icon="📊" dashboard>
-        <p>
-          Select your market to explore predictions or view all available models
-          and their statistics.
-        </p>
-      </Callout>
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-6 mt-8">
-        <div className="mt-8 col-span-1 md:col-span-4 max-w-4xl">
-          <label
-            htmlFor="market-select"
-            className="block text-lg font-medium mb-2"
-          >
-            Select the market:
-          </label>
-          <select
-            id="market-select"
-            className="w-full px-4 py-2 border rounded-md"
-            onChange={(e) => handleMarketSelection(e.target.value)}
-          >
-            <option value="" disabled selected>
-              Choose a market
-            </option>
-            {AVAILABLE_MARKETS.map((market) => (
-              <option key={market.abbreviation} value={market.abbreviation}>
-                {market.name}
+    <>
+      <Head>
+        <title>
+          {selectedMarket ? `${selectedMarket} Dashboard` : 'Dashboard'}
+        </title>
+        <meta
+          name="description"
+          content="Explore predictions and models for various markets. View statistics and make informed decisions."
+        />
+        <meta
+          name="keywords"
+          content="dashboard, market predictions, models, statistics, trading signals"
+        />
+        <meta name="author" content="Dashboard Team" />
+      </Head>
+      <main className="container mx-auto py-8">
+        <Callout title="Welcome to the Dashboard" icon="📊" dashboard>
+          <p>
+            Select your market to explore predictions or view all available
+            models and their statistics.
+          </p>
+        </Callout>
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-6 mt-8">
+          <div className="mt-8 col-span-1 md:col-span-4 max-w-4xl">
+            <label
+              htmlFor="market-select"
+              className="block text-lg font-medium mb-2"
+            >
+              Select the market:
+            </label>
+            <select
+              id="market-select"
+              className="w-full px-4 py-2 border rounded-md"
+              onChange={(e) => handleMarketSelection(e.target.value)}
+            >
+              <option value="" disabled selected>
+                Choose a market
               </option>
-            ))}
-          </select>
+              {AVAILABLE_MARKETS.map((market) => (
+                <option key={market.abbreviation} value={market.abbreviation}>
+                  {market.name}
+                </option>
+              ))}
+            </select>
 
-          <p className="mt-4 text-center text-gray-600">Or</p>
+            <p className="mt-4 text-center text-gray-600">Or</p>
 
-          <Button className="mt-4 w-full" onClick={handleViewAllModels}>
-            View All Models Available
-          </Button>
+            <Button className="mt-4 w-full" onClick={handleViewAllModels}>
+              View All Models Available
+            </Button>
 
-          <Button
-            className="mt-4 w-full"
-            onClick={() => router.push('/dashboard/markets')}
-          >
-            View Market Details
-          </Button>
+            <Button
+              className="mt-4 w-full"
+              onClick={() => router.push('/dashboard/markets')}
+            >
+              View Market Details
+            </Button>
+          </div>
+
+          <aside className="col-span-1 md:col-span-1 max-w-xs border-l pl-4">
+            <DocsSidebarNav items={popularItems} locale="en" />
+          </aside>
         </div>
-
-        <aside className="col-span-1 md:col-span-1 max-w-xs border-l pl-4">
-          <DocsSidebarNav items={popularItems} locale="en" />
-        </aside>
-      </div>
-    </main>
+      </main>
+    </>
   )
 }

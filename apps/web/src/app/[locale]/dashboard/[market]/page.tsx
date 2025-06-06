@@ -1,84 +1,71 @@
 'use client'
 import { useParams } from 'next/navigation'
-import { useState, useEffect } from 'react'
 import TradingChart from '@/components/technical-components/TradingChart'
-
-interface MarketParams {
-  market: string
-}
-
-const getSymbolFromMarket = (market: string) => {
-  // Convert URL parameter to valid trading pair
-  const symbolMap: { [key: string]: string } = {
-    bitcoin: 'BTCUSDT',
-    ethereum: 'ETHUSDT',
-    gold: 'GC=F', // Updated to use Yahoo Finance symbol for gold futures
-    silver: 'XAGUSDT',
-    // Add more mappings as needed
-  }
-  return symbolMap[market.toLowerCase()] || 'BTCUSDT' // Default to BTCUSDT if market not found
-}
+import { ModelInfoCard } from '@/components/technical-components/ModelInfoCard'
+import { useModelContext } from '@/context/ModelContext'
+import { modelInfoList } from '@/config/model-info'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import PredictionsTab from '@/components/dashboard/PredictionsTab'
+import NewsTab from '@/components/dashboard/NewsTab'
+import ContactTab from '@/components/dashboard/ContactTab'
 
 export default function MarketPage() {
   const params = useParams()
   const market = params?.market as string
-  const [loading, setLoading] = useState(true)
-  const [selectedModel, setSelectedModel] = useState('')
+  const { selectedModel } = useModelContext()
 
-  const symbol = getSymbolFromMarket(market as string)
-
-  const availableModels = [
-    { id: 'model-001', name: 'Model 1' },
-    { id: 'model-002', name: 'Model 2' },
-    { id: 'model-003', name: 'Model 3' },
-  ] // Replace with actual models for the market
-
-  const handleModelChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedModel(event.target.value)
-  }
-
-  useEffect(() => {
-    setLoading(true)
-    // Simulate chart loading
-    const timer = setTimeout(() => setLoading(false), 1000) // Adjust time as needed
-
-    return () => clearTimeout(timer)
-  }, [market])
+  const modelInfo = modelInfoList.find((model) => model.id === selectedModel)
 
   if (!market) {
     return <div className="container mx-auto py-8">Market not specified</div>
   }
 
-  if (loading) {
-    return <div className="container mx-auto py-8">Loading chart...</div>
-  }
-
   return (
-    <div className="container mx-auto">
-      <div className="mb-4">
-        <label
-          htmlFor="model-select"
-          className="block text-sm font-medium text-gray-700"
-        >
-          Select a Model:
-        </label>
-        <select
-          id="model-select"
-          value={selectedModel}
-          onChange={handleModelChange}
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-        >
-          <option value="" disabled>
-            Choose a model
-          </option>
-          {availableModels.map((model) => (
-            <option key={model.id} value={model.id}>
-              {model.name}
-            </option>
-          ))}
-        </select>
+    <div className="container mx-auto py-8 space-y-8">
+      <div className="flex flex-col lg:flex-row lg:space-x-4">
+        <div className="flex-1">
+          <TradingChart />
+        </div>
+        <div className="lg:w-1/3">
+          {modelInfo && (
+            <ModelInfoCard pageContext={'models'} modelInfo={modelInfo} />
+          )}
+        </div>
       </div>
-      <TradingChart />
+
+      <div className="border relative top-4 rounded-lg">
+        <Tabs defaultValue="predictions" className="w-full">
+          <TabsList className="w-full justify-start border-b rounded-none p-0 h-auto">
+            <TabsTrigger
+              value="predictions"
+              className="px-4 py-2 data-[state=active]:bg-background data-[state=active]:border-b-2 data-[state=active]:border-primary rounded-none"
+            >
+              Predictions
+            </TabsTrigger>
+            <TabsTrigger
+              value="news"
+              className="px-4 py-2 data-[state=active]:bg-background data-[state=active]:border-b-2 data-[state=active]:border-primary rounded-none"
+            >
+              News
+            </TabsTrigger>
+            <TabsTrigger
+              value="contact"
+              className="px-4 py-2 data-[state=active]:bg-background data-[state=active]:border-b-2 data-[state=active]:border-primary rounded-none"
+            >
+              Contact
+            </TabsTrigger>
+          </TabsList>
+          <TabsContent value="predictions" className="p-4">
+            <PredictionsTab selectedModel={selectedModel} />
+          </TabsContent>
+          <TabsContent value="news" className="p-4">
+            <NewsTab />
+          </TabsContent>
+          <TabsContent value="contact" className="p-4">
+            <ContactTab />
+          </TabsContent>
+        </Tabs>
+      </div>
     </div>
   )
 }

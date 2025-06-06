@@ -47,10 +47,10 @@ export function PaginatedBlogPosts({
   perPage = 10,
 }: PaginatedBlogPostsProps) {
   const searchParams = useSearchParams()
-  const tag = searchParams.get('tag')
+  const tag = searchParams?.get('tag') || ''
 
   const currentPage = useMemo(() => {
-    const page = searchParams.get('page')
+    const page = searchParams?.get('page')
 
     return page ? parseInt(page, 10) : 1
   }, [searchParams])

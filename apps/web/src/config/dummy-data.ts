@@ -22,7 +22,7 @@ export const predictions = [
   },
   {
     date: '2025-06-04',
-    modelId: 'model-004',
+    modelId: 'model-001',
     probabilities: { buy: 0.6, sell: 0.3, hold: 0.1 },
     signal: 1, // Buy
   },
@@ -31,6 +31,36 @@ export const predictions = [
     modelId: 'model-005',
     probabilities: { buy: 0.2, sell: 0.5, hold: 0.3 },
     signal: -1, // Sell
+  },
+  {
+    date: '2025-06-06',
+    modelId: 'model-006',
+    probabilities: { buy: 0.4, sell: 0.4, hold: 0.2 },
+    signal: 0, // Hold
+  },
+  {
+    date: '2025-06-07',
+    modelId: 'model-007',
+    probabilities: { buy: 0.5, sell: 0.3, hold: 0.2 },
+    signal: 1, // Buy
+  },
+  {
+    date: '2025-06-08',
+    modelId: 'model-008',
+    probabilities: { buy: 0.2, sell: 0.6, hold: 0.2 },
+    signal: -1, // Sell
+  },
+  {
+    date: '2025-06-09',
+    modelId: 'model-009',
+    probabilities: { buy: 0.3, sell: 0.3, hold: 0.4 },
+    signal: 0, // Hold
+  },
+  {
+    date: '2025-06-10',
+    modelId: 'model-010',
+    probabilities: { buy: 0.7, sell: 0.2, hold: 0.1 },
+    signal: 1, // Buy
   },
 ]
 

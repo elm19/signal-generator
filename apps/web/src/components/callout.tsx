@@ -1,9 +1,11 @@
 import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert'
+import Link from 'next/link'
 
 interface CalloutProps {
   icon?: string
   title?: string
   children?: React.ReactNode
+  href?: string
   dashboard?: boolean
 }
 
@@ -12,6 +14,7 @@ export function Callout({
   children,
   icon,
   dashboard,
+  href = '/dashboard',
   ...props
 }: CalloutProps) {
   if (dashboard) {
@@ -19,7 +22,11 @@ export function Callout({
       <Alert {...props}>
         <div className="flex">
           {icon && <span className="mr-4 text-2xl">{icon}</span>}
-          {title && <AlertTitle className="text-2xl">{title}</AlertTitle>}
+          {title && (
+            <Link href={href}>
+              <AlertTitle className="text-2xl">{title}</AlertTitle>
+            </Link>
+          )}
         </div>
         <AlertDescription>{children}</AlertDescription>
       </Alert>

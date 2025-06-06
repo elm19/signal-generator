@@ -7,11 +7,16 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"],
-      "contentlayer/generated": ["./.contentlayer/generated"]
+      "@/*": [
+        "./src/*"
+      ],
+      "contentlayer/generated": [
+        "./.contentlayer/generated"
+      ]
     },
     "baseUrl": ".",
     "rootDir": ".",
+    "strictNullChecks": true
   },
   "include": [
     "**/*.ts",
@@ -25,5 +30,7 @@
     "contentlayer.config.ts",
     ".contentlayer/generated"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }

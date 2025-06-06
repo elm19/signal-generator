@@ -3,7 +3,7 @@
 // Predictions for the last 5 days
 export const predictions = [
   {
-    date: '2025-06-01',
+    date: '2025-05-20',
     modelId: 'model-001',
     probabilities: { buy: 0.7, sell: 0.2, hold: 0.1 },
     signal: 1, // Buy
@@ -12,7 +12,7 @@ export const predictions = [
     date: '2025-06-02',
     modelId: 'model-002',
     probabilities: { buy: 0.1, sell: 0.8, hold: 0.1 },
-    signal: -1, // Sell
+    signal: 1, // Sell
   },
   {
     date: '2025-06-03',

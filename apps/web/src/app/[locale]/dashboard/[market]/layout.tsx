@@ -1,5 +1,6 @@
 import { setRequestLocale } from 'next-intl/server'
 import { useState } from 'react'
+import type { Metadata } from 'next'
 
 import type { LocaleOptions } from '@/lib/opendocs/types/i18n'
 import Link from 'next/link'

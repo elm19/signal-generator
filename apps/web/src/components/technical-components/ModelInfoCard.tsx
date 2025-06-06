@@ -8,7 +8,7 @@ import {
 import { QuestionMarkCircledIcon } from '@radix-ui/react-icons'
 import { Alert } from '../ui/alert'
 
-interface ModelInfo {
+export interface ModelInfo {
   id: string
   name: string
   lastTrained: string

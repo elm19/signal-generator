@@ -2,7 +2,7 @@ const { createContentlayerPlugin } = require('next-contentlayer2')
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   swcMinify: true,
 }
 

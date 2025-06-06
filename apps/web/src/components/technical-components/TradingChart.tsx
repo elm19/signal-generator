@@ -13,12 +13,12 @@ export default function TradingChart() {
   const chartRef = useRef<HTMLDivElement>(null)
   const { theme } = useTheme()
   const [isVisible, setIsVisible] = useState(false)
-  const [dimensions, setDimensions] = useState({ width: 600, height: 450 })
+  const [dimensions, setDimensions] = useState({ width: 650, height: 500 })
 
   const toggleDimensions = () => {
     setDimensions((prev) => ({
-      width: prev.width === 600 ? 1000 : 600,
-      height: prev.height === 450 ? 600 : 450,
+      width: prev.width === 650 ? 1000 : 650,
+      height: prev.height === 500 ? 600 : 500,
     }))
   }
 
@@ -106,6 +106,20 @@ export default function TradingChart() {
   }, [theme, dimensions])
 
   useEffect(() => {
+    const handleResize = () => {
+      const width =
+        window.innerWidth < 768 ? window.innerWidth - 40 : dimensions.width
+      const height = window.innerWidth < 768 ? width * 0.75 : dimensions.height
+      setDimensions({ width, height })
+    }
+
+    window.addEventListener('resize', handleResize)
+    handleResize() // Initial resize
+
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+  useEffect(() => {
     const timer = setTimeout(() => setIsVisible(true), 500) // Delay appearance by 500ms
     return () => clearTimeout(timer)
   }, [])
@@ -133,6 +147,7 @@ export default function TradingChart() {
     >
       <button
         onClick={toggleDimensions}
+        className="hidden sm:flex"
         style={{
           position: 'relative',
           marginBottom: '10px',
@@ -144,7 +159,7 @@ export default function TradingChart() {
           border: 'none',
           borderRadius: '50%',
           cursor: 'pointer',
-          display: 'flex',
+          // display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
         }}

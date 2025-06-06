@@ -4,6 +4,14 @@ const { createContentlayerPlugin } = require('next-contentlayer2')
 const nextConfig = {
   reactStrictMode: false,
   swcMinify: true,
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 's.yimg.com',
+      },
+    ],
+  },
 }
 
 const withContentlayer = createContentlayerPlugin({})

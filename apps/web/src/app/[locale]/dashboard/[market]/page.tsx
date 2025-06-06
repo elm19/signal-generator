@@ -6,6 +6,8 @@ import { useModelContext } from '@/context/ModelContext'
 import { modelInfoList } from '@/config/model-info'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import PredictionsTab from '@/components/dashboard/PredictionsTab'
+import NewsTab from '@/components/dashboard/NewsTab'
+import ContactTab from '@/components/dashboard/ContactTab'
 
 export default function MarketPage() {
   const params = useParams()
@@ -52,16 +54,13 @@ export default function MarketPage() {
             </TabsTrigger>
           </TabsList>
           <TabsContent value="predictions" className="p-4">
-            <h3 className="text-lg font-semibold mb-4">Model Predictions</h3>
             <PredictionsTab selectedModel={selectedModel} />
           </TabsContent>
           <TabsContent value="news" className="p-4">
-            <h3 className="text-lg font-semibold mb-4">Related News</h3>
-            {/* News feed will go here */}
+            <NewsTab />
           </TabsContent>
           <TabsContent value="contact" className="p-4">
-            <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
-            {/* Contact form will go here */}
+            <ContactTab />
           </TabsContent>
         </Tabs>
       </div>

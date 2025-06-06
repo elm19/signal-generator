@@ -42,7 +42,7 @@ export function BlogPostItemTags({
   return (
     <div className="w-fit flex flex-wrap items-center gap-2 pt-4">
       {tags.map((tag) => {
-        const currentTag = searchParams.get('tag') || ''
+        const currentTag = searchParams ? searchParams.get('tag') || '' : ''
         const isCurrentTagActive = tag === currentTag
 
         const href = isCurrentTagActive

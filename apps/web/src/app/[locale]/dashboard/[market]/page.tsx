@@ -3,19 +3,9 @@ import { useParams } from 'next/navigation'
 import { useState, useEffect } from 'react'
 import TradingChart from '@/components/technical-components/TradingChart'
 
-const getSymbolFromMarket = (market: string) => {
-  // Convert URL parameter to valid trading pair
-  const symbolMap: { [key: string]: string } = {
-    bitcoin: 'BTCUSDT',
-    ethereum: 'ETHUSDT',
-    gold: 'GC=F', // Updated to use Yahoo Finance symbol for gold futures
-    silver: 'XAGUSDT',
-    // Add more mappings as needed
-  }
-  return symbolMap[market.toLowerCase()] || 'BTCUSDT' // Default to BTCUSDT if market not found
+interface MarketParams {
+  market: string
 }
-import { useState, useEffect } from 'react'
-import TradingChart from '@/components/technical-components/TradingChart'
 
 const getSymbolFromMarket = (market: string) => {
   // Convert URL parameter to valid trading pair
@@ -30,21 +20,8 @@ const getSymbolFromMarket = (market: string) => {
 }
 
 export default function MarketPage() {
-  const { market } = useParams()
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
-
-  const symbol = getSymbolFromMarket(market as string)
-
-  useEffect(() => {
-    setLoading(true)
-    setError(null)
-    // Reset states when market changes
-  }, [market])
-
-  if (!market) {
-    return <div className="container mx-auto py-8">Market not specified</div>
-  }
+  const params = useParams()
+  const market = params?.market as string
   const [loading, setLoading] = useState(true)
   const [selectedModel, setSelectedModel] = useState('')
 
@@ -62,7 +39,6 @@ export default function MarketPage() {
 
   useEffect(() => {
     setLoading(true)
-
     // Simulate chart loading
     const timer = setTimeout(() => setLoading(false), 1000) // Adjust time as needed
 
@@ -78,9 +54,6 @@ export default function MarketPage() {
   }
 
   return (
-    <main className="container mx-auto ">
-      <TradingChart />
-    </main>
     <div className="container mx-auto">
       <div className="mb-4">
         <label
@@ -105,7 +78,7 @@ export default function MarketPage() {
           ))}
         </select>
       </div>
-      <TradingChart selectedModel={selectedModel} />
+      <TradingChart />
     </div>
   )
 }

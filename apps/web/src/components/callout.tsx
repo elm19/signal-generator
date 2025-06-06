@@ -1,10 +1,10 @@
-import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
+import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert'
 
 interface CalloutProps {
-  icon?: string;
-  title?: string;
-  children?: React.ReactNode;
-  dashboard?: boolean;
+  icon?: string
+  title?: string
+  children?: React.ReactNode
+  dashboard?: boolean
 }
 
 export function Callout({
@@ -14,7 +14,7 @@ export function Callout({
   dashboard,
   ...props
 }: CalloutProps) {
-  if (dashboard){
+  if (dashboard) {
     return (
       <Alert {...props}>
         <div className="flex">
@@ -33,5 +33,5 @@ export function Callout({
 
       <AlertDescription>{children}</AlertDescription>
     </Alert>
-  );
+  )
 }

@@ -11,12 +11,20 @@ interface NewsArticle {
 
 const NewsTab = () => {
   const [news, setNews] = useState<NewsArticle[]>([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchLatestNews = async () => {
-      const response = await fetch('/api/news')
-      const latestNews = await response.json()
-      setNews(latestNews.news)
+      setLoading(true)
+      try {
+        const response = await fetch('/api/news')
+        const latestNews = await response.json()
+        setNews(latestNews.news)
+      } catch (error) {
+        console.error('Error fetching news:', error)
+      } finally {
+        setLoading(false)
+      }
     }
 
     fetchLatestNews()
@@ -24,47 +32,52 @@ const NewsTab = () => {
 
   return (
     <div>
-      <p className="mb-4">
-        Our models are trained without considering news events. However, we plan
-        to introduce models that incorporate news analysis in the future. Below
-        are the latest news articles related to gold.
-      </p>
-      <div className="max-h-64 overflow-y-auto">
-        <ul className="space-y-2">
-          {news.map((article, index) => (
-            <li
-              key={index}
-              className="border p-2 rounded flex items-center space-x-2"
-            >
-              {article.thumbnail && (
-                <Image
-                  src={article.thumbnail}
-                  alt={article.title}
-                  width={32}
-                  height={32}
-                  className="rounded"
-                />
-              )}
-              <div className="flex-1">
-                <a
-                  href={article.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-500 hover:underline"
+      {loading ? (
+        <div className="flex justify-center items-center h-32">
+          <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-primary"></div>
+        </div>
+      ) : (
+        <>
+          <p className="mb-4">
+            Our models are trained without considering news events. However, we
+            plan to introduce models that incorporate news analysis in the
+            future. Below are the latest news articles related to gold.
+          </p>
+          <div className="max-h-64 overflow-y-auto">
+            <ul className="space-y-2">
+              {news.map((article, index) => (
+                <li
+                  key={index}
+                  className="border p-2 rounded flex items-center space-x-2"
                 >
-                  {article.title}
-                </a>
-                <p className="text-xs text-gray-500">
-                  Published on:{' '}
-                  {article.date
-                    ? new Date(article.date).toLocaleDateString()
-                    : 'Unknown'}
-                </p>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </div>
+                  {article.thumbnail && (
+                    <Image
+                      src={article.thumbnail}
+                      alt={article.title}
+                      width={50}
+                      height={50}
+                      className="rounded"
+                    />
+                  )}
+                  <div>
+                    <a
+                      href={article.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-500 hover:underline"
+                    >
+                      {article.title}
+                    </a>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">
+                      {article.summary}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </>
+      )}
     </div>
   )
 }

@@ -3,7 +3,7 @@ import en from '@/i18n/locales/en.json'
 import fr from '@/i18n/locales/fr.json'
 
 export const siteConfig = {
-  name: 'getTheSignal',
+  name: 'signal-provider',
 
   description: {
     en: 'Advanced time series analysis and trading signal generation platform. Get accurate market insights with our ML-powered signal generator.',

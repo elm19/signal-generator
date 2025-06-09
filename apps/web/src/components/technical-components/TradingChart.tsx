@@ -2,18 +2,26 @@
 import { useEffect, useRef, useState } from 'react'
 import {
   createChart,
-  Time,
   SeriesMarkerPosition,
-  SeriesMarkerShape,
+  BusinessDay,
 } from 'lightweight-charts'
 import { useTheme } from 'next-themes'
-import { predictions } from '@/config/dummy-data'
+import { PredictionData } from '@/types/PredictionData'
 
-export default function TradingChart() {
+export default function TradingChart({
+  predictions,
+  market,
+}: {
+  predictions: PredictionData[]
+  market: string
+}) {
+  console.log('the predictions at the chart comppioontent', predictions)
   const chartRef = useRef<HTMLDivElement>(null)
   const { theme } = useTheme()
   const [isVisible, setIsVisible] = useState(false)
   const [dimensions, setDimensions] = useState({ width: 650, height: 500 })
+  const [loading, setLoading] = useState(false) // Add loading state
+  let chart: any = null // Declare chart variable
 
   const toggleDimensions = () => {
     setDimensions((prev) => ({
@@ -24,28 +32,65 @@ export default function TradingChart() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch('/api/gold')
+      setLoading(true) // Set loading to true when fetching starts
+
+      const res = await fetch(`/api/ohcl_data?symbol=${market}`)
       const { data }: { data: any[] } = await res.json()
 
-      const candlestickData = data.map((item: any) => ({
-        time: item.time, // UNIX timestamp in seconds
-        open: item.open,
-        high: item.high,
-        low: item.low,
-        close: item.close,
-      }))
+      const candlestickData = data
+        .map((item: any) => ({
+          time: item.time,
+          open: item.open,
+          high: item.high,
+          low: item.low,
+          close: item.close,
+        }))
+        .sort((a, b) => a.time - b.time) // Ensure ascending order by time
+
+      const reversedPredictions = [...predictions].reverse()
+
+      const markers = reversedPredictions
+        .filter(
+          (pred) => pred.prediction === 'buy' || pred.prediction === 'sell'
+        )
+        .map((pred) => {
+          const markerType = pred.prediction
+
+          // Convert date string to the expected format and ensure compatibility with Time type
+          const formattedDate = new Date(pred.date as string)
+            .toISOString()
+            .split('T')[0] as unknown as BusinessDay // Convert to 'unknown' first, then cast to BusinessDay
+
+          return {
+            time: formattedDate,
+            position:
+              markerType === 'buy'
+                ? 'belowBar'
+                : ('aboveBar' as SeriesMarkerPosition), // Explicitly cast to SeriesMarkerPosition
+            color: markerType === 'buy' ? 'green' : 'red',
+            shape: markerType === 'buy' ? 'arrowUp' : 'arrowDown',
+            text: markerType === 'buy' ? 'Buy Signal' : 'Sell Signal',
+          }
+        })
+        .sort((a, b) => {
+          return (
+            new Date(a.time as unknown as string).getTime() -
+            new Date(b.time as unknown as string).getTime()
+          )
+        }) // Ensure ascending order by time
 
       if (!chartRef.current) {
         console.error('Chart container is not available.')
+        setLoading(false) // Set loading to false if chart container is unavailable
         return
       }
 
       // Remove any existing chart before creating a new one
-      if (chartRef.current && chartRef.current.firstChild) {
+      if (chartRef.current.firstChild) {
         chartRef.current.removeChild(chartRef.current.firstChild)
       }
 
-      const chart = createChart(chartRef.current, {
+      chart = createChart(chartRef.current, {
         width: dimensions.width,
         height: dimensions.height,
         layout: {
@@ -75,35 +120,19 @@ export default function TradingChart() {
 
       const series = chart.addCandlestickSeries()
       series.setData(candlestickData)
-
-      // Add markers for buy and sell signals
-      const markers = predictions
-        .filter(
-          (prediction) => prediction.signal === 1 || prediction.signal === -1
-        )
-        .map((prediction) => {
-          const markerType = prediction.signal === 1 ? 'buy' : 'sell'
-
-          return {
-            time: (new Date(prediction.date).getTime() / 1000) as Time, // Convert date to UNIX timestamp in seconds and cast to Time
-            position: (markerType === 'buy'
-              ? 'belowBar'
-              : 'aboveBar') as SeriesMarkerPosition,
-            color: markerType === 'buy' ? 'green' : 'red',
-            shape: (markerType === 'buy'
-              ? 'arrowUp'
-              : 'arrowDown') as SeriesMarkerShape,
-            text: markerType === 'buy' ? 'Buy Signal' : 'Sell Signal',
-          }
-        })
-
       series.setMarkers(markers)
 
-      return () => chart.remove()
+      setLoading(false) // Set loading to false when fetching is complete
     }
 
     fetchData()
-  }, [theme, dimensions])
+
+    return () => {
+      if (chartRef.current && chartRef.current.firstChild) {
+        chartRef.current.removeChild(chartRef.current.firstChild)
+      }
+    }
+  }, [theme, dimensions, predictions])
 
   useEffect(() => {
     const handleResize = () => {
@@ -145,6 +174,16 @@ export default function TradingChart() {
         opacity: isVisible ? 1 : 0, // Use isVisible to control opacity
       }}
     >
+      {loading && (
+        <div
+          style={{
+            marginBottom: '10px',
+            color: theme === 'dark' ? '#ffffff' : '#000000',
+          }}
+        >
+          Loading predictions...
+        </div>
+      )}
       <button
         onClick={toggleDimensions}
         className="hidden sm:flex"

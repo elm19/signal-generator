@@ -4,11 +4,11 @@ import type { Metadata } from 'next'
 
 import type { LocaleOptions } from '@/lib/opendocs/types/i18n'
 import Link from 'next/link'
-import { Callout } from '@/components/callout'
 import { Alert, AlertTitle } from '@/components/ui/alert'
 import { ModelSelector } from '@/components/dashboard/ModelSelector'
 import { ModelProvider } from '@/context/ModelContext'
 import { modelInfoList } from '@/config/model-info'
+import { backEndLink } from '@/config/backEndLink'
 
 interface DashboardLayoutProps {
   children: React.ReactNode
@@ -51,10 +51,11 @@ export default async function DashboardLayout({
 }: DashboardLayoutProps) {
   setRequestLocale(params.locale)
 
-  const modelsForMarket = modelInfoList.filter(
-    (model) => model.market === params.market
-  )
-
+  const res = await fetch(`${backEndLink}market/${params.market}`, {
+    cache: 'no-store',
+  })
+  const modelsForMarket = (await res.json()).models
+  console.log('Models for market:', modelsForMarket)
   return (
     <ModelProvider>
       <main className="container mx-auto py-8 flex flex-col gap-8">

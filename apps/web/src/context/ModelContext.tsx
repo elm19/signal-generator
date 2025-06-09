@@ -11,7 +11,7 @@ const ModelContext = createContext<ModelContextProps | undefined>(undefined)
 export const ModelProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [selectedModel, setSelectedModel] = useState<string>('model-001')
+  const [selectedModel, setSelectedModel] = useState<string>('')
 
   return (
     <ModelContext.Provider value={{ selectedModel, setSelectedModel }}>

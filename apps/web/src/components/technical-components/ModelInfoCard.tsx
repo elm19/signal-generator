@@ -43,12 +43,7 @@ export function ModelInfoCard({
         return
       }
       try {
-        const response = await fetch(
-          `${backEndLink}model-info/${modelSelected}`,
-          {
-            cache: 'no-store',
-          }
-        )
+        const response = await fetch(`${backEndLink}model-info/${modelSelected}`)
         const data = await response.json()
         setModelInfo(data.model || null)
       } catch (error) {

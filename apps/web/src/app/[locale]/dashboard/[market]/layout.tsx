@@ -51,9 +51,7 @@ export default async function DashboardLayout({
 }: DashboardLayoutProps) {
   setRequestLocale(params.locale)
 
-  const res = await fetch(`${backEndLink}market/${params.market}`, {
-    cache: 'no-store',
-  })
+  const res = await fetch(`${backEndLink}market/${params.market}`)
   const modelsForMarket = (await res.json()).models
   console.log('Models for market:', modelsForMarket)
   return (

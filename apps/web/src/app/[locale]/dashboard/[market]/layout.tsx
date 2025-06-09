@@ -8,6 +8,7 @@ import { Alert, AlertTitle } from '@/components/ui/alert'
 import { ModelSelector } from '@/components/dashboard/ModelSelector'
 import { ModelProvider } from '@/context/ModelContext'
 import { modelInfoList } from '@/config/model-info'
+import { backEndLink } from '@/config/backEndLink'
 
 interface DashboardLayoutProps {
   children: React.ReactNode
@@ -50,7 +51,7 @@ export default async function DashboardLayout({
 }: DashboardLayoutProps) {
   setRequestLocale(params.locale)
 
-  const res = await fetch(`http://127.0.0.1:5000/market/${params.market}`, {
+  const res = await fetch(`${backEndLink}market/${params.market}`, {
     cache: 'no-store',
   })
   const modelsForMarket = (await res.json()).models

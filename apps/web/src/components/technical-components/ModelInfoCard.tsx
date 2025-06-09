@@ -9,6 +9,7 @@ import { QuestionMarkCircledIcon } from '@radix-ui/react-icons'
 import { Alert } from '../ui/alert'
 import { ModelData } from '@/types/ModelData'
 import { useEffect, useState } from 'react'
+import { backEndLink } from '@/config/backEndLink'
 
 export interface ModelInfo {
   id: string
@@ -43,7 +44,7 @@ export function ModelInfoCard({
       }
       try {
         const response = await fetch(
-          `http://127.0.0.1:5000/model-info/${modelSelected}`,
+          `${backEndLink}model-info/${modelSelected}`,
           {
             cache: 'no-store',
           }

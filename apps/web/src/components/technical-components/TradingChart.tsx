@@ -2,20 +2,17 @@
 import { useEffect, useRef, useState } from 'react'
 import {
   createChart,
-  Time,
   SeriesMarkerPosition,
-  SeriesMarkerShape,
   BusinessDay,
 } from 'lightweight-charts'
 import { useTheme } from 'next-themes'
-import { predictions } from '@/config/dummy-data'
 import { PredictionData } from '@/types/PredictionData'
 
 export default function TradingChart({
   predictions,
   market,
 }: {
-  predictions: PredictionData[],
+  predictions: PredictionData[]
   market: string
 }) {
   console.log('the predictions at the chart comppioontent', predictions)
@@ -42,7 +39,7 @@ export default function TradingChart({
 
       const candlestickData = data
         .map((item: any) => ({
-          time: item.time, // UNIX timestamp in seconds
+          time: item.time,
           open: item.open,
           high: item.high,
           low: item.low,

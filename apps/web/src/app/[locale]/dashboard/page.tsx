@@ -7,7 +7,7 @@ import { DocsSidebarNav } from '@/components/docs/sidebar-nav'
 import { Button } from '@/components/ui/button'
 import Head from 'next/head'
 import { useState, useEffect } from 'react'
-import { backEndLink } from '@/config/dummy-data'
+import { backEndLink } from '@/config/backEndLink'
 
 const popularItems = [
   {

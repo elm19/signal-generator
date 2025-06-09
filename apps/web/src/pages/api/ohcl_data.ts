@@ -12,9 +12,17 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  try {
-    const url = `https://query1.finance.yahoo.com/v8/finance/chart/GC=F?interval=1d&range=10y`
+  const { symbol = 'GC=F' } = req.query // default to gold if none provided
 
+  if (typeof symbol !== 'string') {
+    return res.status(400).json({ error: 'Invalid symbol parameter' })
+  }
+
+  try {
+    const period1 = Math.floor(new Date('2010-3-25').getTime() / 1000)
+    const period2 = Math.floor(new Date('2025-05-06').getTime() / 1000)
+
+    const url = `https://query1.finance.yahoo.com/v8/finance/chart/${symbol}=F?interval=1d&period1=${period1}&period2=${period2}`
     const response = await fetch(url)
     const rawData = await response.json()
 
@@ -28,7 +36,7 @@ export default async function handler(
 
     const data: OHLC[] = timestamps
       .map((time: number, i: number) => ({
-        time: Number(time), // convert to number explicitly
+        time: Number(time),
         open: indicators.open[i],
         high: indicators.high[i],
         low: indicators.low[i],
@@ -37,13 +45,12 @@ export default async function handler(
       .filter(
         (d) =>
           !isNaN(d.time) &&
-          typeof d.time === 'number' &&
           d.open != null &&
           d.high != null &&
           d.low != null &&
           d.close != null
       )
-      .sort((a, b) => a.time - b.time) // ensure ascending order
+      .sort((a, b) => a.time - b.time)
 
     return res.status(200).json({ data })
   } catch (err) {

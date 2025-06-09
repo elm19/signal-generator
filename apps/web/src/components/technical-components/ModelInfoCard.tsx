@@ -7,6 +7,8 @@ import {
 } from '@/components/ui/accordion'
 import { QuestionMarkCircledIcon } from '@radix-ui/react-icons'
 import { Alert } from '../ui/alert'
+import { ModelData } from '@/types/ModelData'
+import { useEffect, useState } from 'react'
 
 export interface ModelInfo {
   id: string
@@ -25,13 +27,39 @@ export interface ModelInfo {
 
 // Fixed persistent formatting issue in the `ModelInfoCard` component
 export function ModelInfoCard({
-  modelInfo,
+  modelSelected,
   pageContext,
 }: {
-  modelInfo: ModelInfo
+  modelSelected: string
   pageContext: 'market' | 'models'
 }) {
-  const backtestingMetrics = modelInfo.backtestingMetrics || {
+  const [modelInfo, setModelInfo] = useState<ModelData | null>(null)
+
+  useEffect(() => {
+    async function fetchModelInfo() {
+      if (!modelSelected) {
+        console.warn('No model selected to fetch info for.')
+        return
+      }
+      try {
+        const response = await fetch(
+          `http://127.0.0.1:5000/model-info/${modelSelected}`,
+          {
+            cache: 'no-store',
+          }
+        )
+        const data = await response.json()
+        setModelInfo(data.model || null)
+      } catch (error) {
+        console.error('Error fetching model info:', error)
+        setModelInfo(null)
+      }
+    }
+
+    fetchModelInfo()
+  }, [modelSelected])
+
+  const backtestingMetrics = modelInfo?.backtestingMetrics || {
     sharpeRatio: 'N/A',
     maxDrawdown: 'N/A',
     annualizedReturn: 'N/A',
@@ -46,13 +74,13 @@ export function ModelInfoCard({
             <AccordionTrigger>General Information</AccordionTrigger>
             <AccordionContent>
               <p>
-                <strong>ID:</strong> {modelInfo.id}
+                <strong>ID:</strong> {modelInfo?.modelid || 'N/A'}
               </p>
               <p>
-                <strong>Name:</strong> {modelInfo.name}
+                <strong>Name:</strong> {modelInfo?.model_name || 'N/A'}
               </p>
               <p>
-                <strong>Market:</strong> {modelInfo.market}
+                <strong>Market:</strong> {modelInfo?.market || 'N/A'}
               </p>
             </AccordionContent>
           </AccordionItem>
@@ -60,16 +88,17 @@ export function ModelInfoCard({
             <AccordionTrigger>Training Details</AccordionTrigger>
             <AccordionContent>
               <p>
-                <strong>Last Trained:</strong> {modelInfo.lastTrained}
+                <strong>Last Trained:</strong>{' '}
+                {modelInfo?.last_updated || 'N/A'}
               </p>
               <p>
-                <strong>Date Created:</strong> {modelInfo.dateCreated}
+                <strong>Date Created:</strong> {modelInfo?.dateCreated || 'N/A'}
               </p>
               <p>
-                <strong>Loss:</strong> {modelInfo.loss}
+                <strong>Loss:</strong> {modelInfo?.loss || 'N/A'}
               </p>
               <p>
-                <strong>Accuracy:</strong> {modelInfo.accuracy}%
+                <strong>Accuracy:</strong> {modelInfo?.accuracy || 'N/A'}%
               </p>
             </AccordionContent>
           </AccordionItem>
@@ -88,14 +117,16 @@ export function ModelInfoCard({
             </AccordionTrigger>
             <AccordionContent>
               <p>
-                <strong>Sharpe Ratio:</strong> {backtestingMetrics.sharpeRatio}
+                <strong>Sharpe Ratio:</strong>{' '}
+                {modelInfo?.sharpe_ratio?.toFixed(3)}
               </p>
               <p>
-                <strong>Max Drawdown:</strong> {backtestingMetrics.maxDrawdown}%
+                <strong>Max Drawdown:</strong>{' '}
+                {modelInfo?.max_drawdown_percent?.toFixed(3)}%
               </p>
               <p>
                 <strong>Annualized Return:</strong>{' '}
-                {backtestingMetrics.annualizedReturn}%
+                {modelInfo?.returns?.toFixed(3)}%
               </p>
             </AccordionContent>
           </AccordionItem>
@@ -114,9 +145,9 @@ export function ModelInfoCard({
         <p className="text-sm text-muted-foreground">
           {pageContext === 'market' ? (
             <>
-              Want to see its predictions for {modelInfo.market}?{' '}
+              Want to see its predictions for {modelInfo?.market || 'N/A'}?{' '}
               <a
-                href={`/dashboard/${modelInfo.market.toLowerCase()}`}
+                href={`/dashboard/${modelInfo?.market?.toLowerCase() || ''}`}
                 className="text-primary hover:text-primary/80 font-medium inline-flex items-center gap-1"
               >
                 Click here
@@ -136,7 +167,7 @@ export function ModelInfoCard({
             </>
           ) : (
             <>
-              Want to explore more models for {modelInfo.market}?{' '}
+              Want to explore more models for {modelInfo?.market || 'N/A'}?{' '}
               <a
                 href={`/models`}
                 className="text-primary hover:text-primary/80 font-medium inline-flex items-center gap-1"

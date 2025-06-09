@@ -8,28 +8,45 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import PredictionsTab from '@/components/dashboard/PredictionsTab'
 import NewsTab from '@/components/dashboard/NewsTab'
 import ContactTab from '@/components/dashboard/ContactTab'
+import { useEffect, useState } from 'react'
+import type { PredictionData } from '@/types/PredictionData'
 
 export default function MarketPage() {
   const params = useParams()
   const market = params?.market as string
   const { selectedModel } = useModelContext()
+  const [predictions, setPredictions] = useState<PredictionData[]>([])
+  console.log("selecctedmodel ", selectedModel)
+  useEffect(() => {
+    async function fetchPredictions() {
+      if (selectedModel) {
+        try {
+          const response =  await fetch(
+            `http://127.0.0.1:5000/predict/model?model_id=${selectedModel}&all=true`
+          )
+          const data = await response.json()
+          setPredictions(data || [])
+        } catch (error) {
+          console.error('Error fetching predictions:', error)
+        }
+      }
+    }
 
-  const modelInfo = modelInfoList.find((model) => model.id === selectedModel)
+    fetchPredictions()
+  }, [selectedModel])
 
   if (!market) {
     return <div className="container mx-auto py-8">Market not specified</div>
   }
-
+  console.log('Fetched predictions:', predictions)
   return (
     <div className="container mx-auto py-8 space-y-8">
       <div className="flex flex-col lg:flex-row lg:space-x-4">
         <div className="flex-1">
-          <TradingChart />
+          <TradingChart predictions={predictions} market={market} />
         </div>
         <div className="lg:w-1/3">
-          {modelInfo && (
-            <ModelInfoCard pageContext={'models'} modelInfo={modelInfo} />
-          )}
+          <ModelInfoCard pageContext={'models'} modelSelected={selectedModel} />
         </div>
       </div>
 

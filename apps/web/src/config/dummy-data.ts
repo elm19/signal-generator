@@ -78,37 +78,5 @@ export const modelDetails = {
   },
 }
 
-// Fetch available markets dynamically from the backend
-export async function fetchAvailableMarkets() {
-  try {
-    const response = await fetch(`http://127.0.0.1:5000/market`)
-    console.log('Fetch response:', response)
-    if (!response.ok) {
-      throw new Error('Failed to fetch available markets')
-    }
-    const data = await response.json()
-    console.log('Parsed data:', data)
-    return data.available_markets
-  } catch (error) {
-    console.error('Error fetching available markets:', error)
-    return []
-  }
-}
 
-// Initialize available markets dynamically
-export let AVAILABLE_MARKETS = []
-fetchAvailableMarkets().then((markets) => {
-  console.log('Available markets:', markets)
-  AVAILABLE_MARKETS = markets
-})
-
-export async function getServerSideProps() {
-  const res = await fetch('http://your-flask-api-url/endpoint')
-  const data = await res.json()
-
-  return {
-    props: {
-      availableMarkets: data.available_markets,
-    },
-  }
-}
+export const backEndLink = 'http://127.0.0.1:5000/'

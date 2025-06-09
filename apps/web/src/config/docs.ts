@@ -17,10 +17,6 @@ export const docsConfig: DocsConfig = {
         en: 'Documentation',
         fr: 'Documentation',
       },
-      keywords: {
-        en: 'docs help guide documentation manual',
-        fr: 'docs aide guide documentation manuel',
-      },
     },
   ],
 
@@ -37,10 +33,6 @@ export const docsConfig: DocsConfig = {
             en: 'Project Overview',
             fr: 'Aperçu du Projet',
           },
-          keywords: {
-            en: 'introduction start overview basics getting-started',
-            fr: 'introduction démarrage aperçu bases commencer',
-          },
           items: [],
         },
         {
@@ -48,10 +40,6 @@ export const docsConfig: DocsConfig = {
           title: {
             en: 'How to Use',
             fr: 'Comment Utiliser',
-          },
-          keywords: {
-            en: 'usage tutorial how-to guide help instructions',
-            fr: 'utilisation tutoriel guide aide instructions',
           },
           items: [],
         },
@@ -69,20 +57,12 @@ export const docsConfig: DocsConfig = {
             en: 'API Documentation',
             fr: 'Documentation API',
           },
-          keywords: {
-            en: 'api reference endpoints authentication integration developer',
-            fr: 'api référence endpoints authentification intégration développeur',
-          },
           items: [],
         },
         {
           title: {
             en: 'API Endpoints',
             fr: 'Points de Terminaison API',
-          },
-          keywords: {
-            en: 'api endpoints routes methods requests responses flask',
-            fr: 'api endpoints routes méthodes requêtes réponses flask',
           },
           items: [
             {
@@ -91,10 +71,6 @@ export const docsConfig: DocsConfig = {
                 en: 'Predict',
                 fr: 'Prédire',
               },
-              keywords: {
-                en: 'predict forecast signals trading prediction model',
-                fr: 'prédire prévoir signaux trading prédiction modèle',
-              },
               items: [],
             },
             {
@@ -102,10 +78,6 @@ export const docsConfig: DocsConfig = {
               title: {
                 en: 'Models-info',
                 fr: 'Informations sur les Modèles',
-              },
-              keywords: {
-                en: 'models info information performance metrics stats',
-                fr: 'modèles info information performance métriques statistiques',
               },
               items: [],
             },
@@ -124,20 +96,12 @@ export const docsConfig: DocsConfig = {
             en: 'Data Pipeline',
             fr: 'Pipeline de Données',
           },
-          keywords: {
-            en: 'data pipeline etl processing workflow',
-            fr: 'données pipeline etl traitement flux',
-          },
           items: [
             {
               href: '/docs/pipeline/data-collection',
               title: {
                 en: 'Data Collection',
                 fr: 'Collecte de Données',
-              },
-              keywords: {
-                en: 'collect data source input gather scrape',
-                fr: 'collecter données source entrée rassembler extraire',
               },
               items: [],
             },
@@ -146,10 +110,6 @@ export const docsConfig: DocsConfig = {
               title: {
                 en: 'Data Preprocessing',
                 fr: 'Prétraitement',
-              },
-              keywords: {
-                en: 'preprocess clean transform normalize filter',
-                fr: 'prétraiter nettoyer transformer normaliser filtrer',
               },
               items: [],
             },
@@ -249,10 +209,6 @@ export const docsConfig: DocsConfig = {
             en: 'FAQ',
             fr: 'Questions Fréquentes',
           },
-          keywords: {
-            en: 'faq help questions answers common issues problems troubleshoot',
-            fr: 'faq aide questions réponses problèmes courants dépanner',
-          },
           items: [],
         },
         {
@@ -260,10 +216,6 @@ export const docsConfig: DocsConfig = {
           title: {
             en: 'Contact',
             fr: 'Contact',
-          },
-          keywords: {
-            en: 'contact support help email reach assistance',
-            fr: 'contact support aide email joindre assistance',
           },
           items: [],
         },

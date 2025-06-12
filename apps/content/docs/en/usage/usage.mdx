@@ -1,48 +1,43 @@
 ---
 title: How to Use
-description: Learn the different ways to interact with the Gold Futures Signal Trading Generator
+description: Learn the different ways to interact with the Multi-Market AI Signal Trading Platform
 ---
-The Gold Futures Signal Trading Generator is designed to be accessible through multiple avenues, catering to different user needs.
+The platform is designed to be accessible through two main methods, each suited to different user needs and technical backgrounds.
 
-## Via the Deployed API (Current Method)
+## 1. Web Interface (Recommended for Most Users)
 
-The primary and currently available method to interact with the Gold Futures Signal Trading Generator is through its deployed Flask REST API. This API allows programmatic access to:
+The simplest way to explore predictions and model data is through our interactive [dashboard](/dashboard).
 
-- Real-time trading signals: Get the latest "buy," "sell," or "hold" recommendations for gold futures.
-- Model information: Retrieve details about the underlying machine learning models and their performance metrics.
+Users can:
 
-This method is ideal for:
-
-- Developers: Integrating signals directly into custom trading applications, algorithms, or bots.
-- Analysts: Fetching data for further analysis or incorporation into dashboards.
-
-To learn how to interact with the API, proceed to [API Usage (Current Deployment)](/docs/api/api-documentation).
-
-## Through the Future User Interface (Planned)
-
-In a future development phase, a dedicated user interface (UI) will be implemented. This interface will provide a more intuitive and visual way to consume the trading signals and monitor model performance.
-
-The planned UI will feature:
-
-- A dashboard displaying current signals and confidence levels.
-- Historical signal performance charts.
-- Insights into individual model metrics and backtest results.
-- Potentially, configuration options for users.
-
-This method will be ideal for:
-
-- Traders: Who prefer a visual overview and direct interaction without coding.
-- Non-technical users: Who need actionable signals at a glance.
-
-Details on this future integration can be found in the [Future Integration Roadmap](/docs/development/roadmap).
-
-## Local Development & Customization
-
-For those interested in the technical internals, extending functionality, or simply running the project in a local environment, the generator's codebase is available for local setup and customization.
+* Select a market (e.g., Gold Futures, NASDAQ, etc.)
+* Choose a model from the list available for that market
+* View signal predictions (Buy / Hold / Sell), model performance metrics, and historical trades visually on an interactive chart
 
 This method is ideal for:
 
-- Developers: Modifying models, adding new features, or experimenting with different data sources.
-- Learners: Those who want to dive deep and understand how the model was created.
+* Traders and analysts who prefer visual signal exploration
+* Non-technical users interested in model insights
 
-For instructions on setting up the project locally, refer to [Development & Contribution](/docs/development/local-setup).
+No coding or setup is required—just visit the website and start exploring.
+
+## 2. REST API (For Programmatic Access)
+
+The platform also exposes a Flask-based REST API that allows developers and technical users to programmatically retrieve data.
+
+The API provides access to:
+
+* **Predictions**: Signal probabilities and decisions for each model and market
+* **Model Info**: Metadata like training loss, backtest return, and confidence levels
+* **Backtesting Results**: Historical trades and performance evaluation metrics
+
+This method is ideal for:
+
+* Developers building automated trading systems
+* Data scientists incorporating signals into custom analysis pipelines
+
+To learn how to interact with the API in detail, see the [API Reference](/docs/api/overview).
+
+---
+
+For contributors or developers interested in customizing the platform, adding models, or running it locally, refer to the [Development & Contribution Guide](/docs/development/overview).

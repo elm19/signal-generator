@@ -1,0 +1,45 @@
+---
+title: API Overview
+description: Complete guide to Trading Signal Provider API
+---
+
+
+All API requests are made to Base URL:
+
+```
+https://elm19.pythonanywhere.com
+```
+
+## How the API Works
+
+Our platform is built around a Flask-based REST API, designed for **daily signal-based trading** — not high-frequency or real-time trading. The API serves precomputed predictions and model data that update once per day.
+
+## Daily Update Cycle
+
+At the end of each trading day (around **10:00 PM UTC**), a scheduled task runs on the server. This task:
+
+* Gathers the most recent market data
+* Uses each model to generate the **next day's prediction**
+* Saves the results to a database
+
+Once this process is complete, the platform is ready to serve the same predictions consistently throughout the next business day via the API.
+
+## Stored Predictions
+
+All prediction-related endpoints return data from the most recent run. This allows for:
+
+* Fast and consistent API responses
+* Reliable behavior during the business day (no live model inference)
+* Simplified integration for automated or manual trading systems
+
+## Weekend Retraining
+
+On weekends, the platform optionally updates selected models using newly available weekly data. This includes:
+
+* Fine-tuning high-performing models
+* Adding new user-submitted models
+* Re-running backtests to refresh performance metrics
+
+This retraining pipeline improves accuracy and keeps model performance up to date without affecting weekday stability.
+
+---

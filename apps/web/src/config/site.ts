@@ -39,7 +39,7 @@ export const siteConfig = {
 
     github: {
       label: 'GitHub',
-      url: 'https://github.com/elm19/GoldSpot-Predictor',
+      url: 'https://github.com/elm19/signal-generatort-docs',
     },
   },
 } as const

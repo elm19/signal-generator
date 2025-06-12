@@ -52,81 +52,42 @@ export const docsConfig: DocsConfig = {
       },
       items: [
         {
-          href: '/docs/api/api-documentation',
+          href: '/docs/api/overview',
           title: {
-            en: 'API Documentation',
-            fr: 'Documentation API',
+            en: 'API Overview',
+            fr: 'API Overview',
           },
           items: [],
         },
         {
+          href: '/docs/api/reference',
           title: {
-            en: 'API Endpoints',
+            en: 'API Reference',
             fr: 'Points de Terminaison API',
           },
-          items: [
-            {
-              href: '/docs/api/endpoint/predict',
-              title: {
-                en: 'Predict',
-                fr: 'Prédire',
-              },
-              items: [],
-            },
-            {
-              href: '/docs/api/endpoint/models-info',
-              title: {
-                en: 'Models-info',
-                fr: 'Informations sur les Modèles',
-              },
-              items: [],
-            },
-          ],
+          items: [],
         },
       ],
     },
     {
       title: {
-        en: 'Technical Documentation',
-        fr: 'Documentation Technique',
+        en: 'Core Concepts',
+        fr: 'Concepts Clés',
       },
       items: [
         {
+          href: '/docs/core-concepts/data-signal',
           title: {
-            en: 'Data Pipeline',
-            fr: 'Pipeline de Données',
+            en: 'From Data to Signals',
+            fr: 'Des Données aux Signaux',
           },
-          items: [
-            {
-              href: '/docs/pipeline/data-collection',
-              title: {
-                en: 'Data Collection',
-                fr: 'Collecte de Données',
-              },
-              items: [],
-            },
-            {
-              href: '/docs/pipeline/preprocessing',
-              title: {
-                en: 'Data Preprocessing',
-                fr: 'Prétraitement',
-              },
-              items: [],
-            },
-            {
-              href: '/docs/pipeline/feature-engineering',
-              title: {
-                en: 'Feature Engineering',
-                fr: 'Ingénierie des Caractéristiques',
-              },
-              items: [],
-            },
-          ],
+          items: [],
         },
         {
+          href: '/docs/core-concepts/backtesting',
           title: {
-            en: 'Model Training',
-            fr: 'Entraînement du Modèle',
+            en: 'Backtesting',
+            fr: 'Backtesting',
           },
           items: [
             {
@@ -148,28 +109,12 @@ export const docsConfig: DocsConfig = {
           ],
         },
         {
+          href: '/docs/core-concepts/prediction-utilization',
           title: {
-            en: 'Performance',
-            fr: 'Performance',
+            en: 'Leveraging Prediction Probabilities',
+            fr: 'Exploitation des Probabilités de Prédiction',
           },
-          items: [
-            {
-              href: '/docs/performance/backtesting',
-              title: {
-                en: 'Backtesting',
-                fr: 'Backtesting',
-              },
-              items: [],
-            },
-            {
-              href: '/docs/performance/metrics',
-              title: {
-                en: 'Performance Metrics',
-                fr: 'Métriques de Performance',
-              },
-              items: [],
-            },
-          ],
+          items: [],
         },
       ],
     },

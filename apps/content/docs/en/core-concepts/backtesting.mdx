@@ -1,0 +1,106 @@
+---
+title: Backtesting
+description: Learn how to evaluate trading models.
+---
+
+Once a model shows good performance on traditional machine learning metrics (accuracy, recall, F1 score), it's tempting to consider it "ready." However, this is not enough in the world of trading. We must ask: **Can this model make profitable decisions?**
+
+To answer that, we use **backtesting**.
+
+---
+
+## What is Backtesting?
+
+Backtesting is the process of simulating trades using historical market data, guided by the model's predictions. The idea is to evaluate how the model would have performed **if it had traded in the past**.
+
+There are two general approaches:
+
+* **Manual**: Look at past data, apply model predictions by hand, and check profit/loss.
+* **Automated**: Use backtesting software that simulates trading logic automatically.
+
+We chose the automated route using the Python package **Backtrader**, which is designed to:
+
+* Rewind time and step through historical data
+* Open/close trades based on model signals
+* Apply custom strategies and risk management rules
+* Output performance metrics like return, drawdown, and trade logs
+
+> Backtrader was selected for its flexibility, extensive documentation, and compatibility with custom models and logic.
+
+---
+
+## Backtesting Strategy Logic
+
+Our strategy simulates the following:
+
+* If **not in a trade**, and the model says `buy` → enter a **long** position
+* If already in a long, and the model says `sell` → exit and enter a **short**
+* If in a short and the model says `buy` → exit and enter a **long**
+
+### Risk Management Plan
+
+* **Stop Loss**: Trailing stop set at 1.5x ATR (Average True Range)
+* **Position Sizing**: Dynamic lot size is calculated such that the **maximum loss per trade is capped at 2%** of available capital
+* **No hard Take Profit** is used; trades are exited based on signal reversal or stop loss
+
+> We won't detail the stop loss and lot size formula here. For an external reference on this widely used risk management technique, see [this link](https://www.investopedia.com/articles/trading/06/position-sizing.asp).
+
+---
+
+## Sample Code
+
+```python
+import backtrader as bt
+
+class ModelSignalStrategy(bt.Strategy):
+    def __init__(self):
+        self.signal = prediction  # model signal is calculated outside of the class for speed
+
+    def next(self):
+        if not self.position:
+            if self.signal[0] == 'buy':
+                self.buy()
+            elif self.signal[0] == 'sell':
+                self.sell()
+        else:
+            if (self.position.size > 0 and self.signal[0] == 'sell') or \
+               (self.position.size < 0 and self.signal[0] == 'buy'):
+                self.close()
+                if self.signal[0] == 'buy':
+                    self.buy()
+                else:
+                    self.sell()
+```
+
+> For full code implementation, see [backtesting code here](#).
+
+---
+
+## Evaluation Metrics
+
+Once simulation ends, we log performance stats:
+
+* **Net Return**
+* **Annualized Return**
+* **Sharpe Ratio**
+* **Max Drawdown**
+* **Total Trades Performed**
+* **Detailed Trade Logs** (entry/exit date, size, PnL)
+
+These help us validate the model beyond traditional ML metrics.
+
+> Note: Our backtests are based on **OHLC daily data only**, ignoring broker commissions and slippage. Results are an estimate, not an exact match to real-world trading.
+
+---
+
+## Final Step: Demo Trading
+
+As a next level of validation, we recommend running the strategy in a **demo trading environment** to observe real-time behavior before risking actual money.
+
+> Sharing your demo trading results helps us improve our models and better understand their strengths and weaknesses. Your feedback is highly valuable. To learn how to contribute, see our [Contribution Guide](#).
+
+---
+
+### ⚠️ Disclaimer
+
+We **do not recommend** using these models for live trading. They are still in development and meant for research, experimentation, and educational purposes only.

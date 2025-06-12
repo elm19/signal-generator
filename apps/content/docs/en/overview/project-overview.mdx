@@ -1,10 +1,13 @@
 ---
 title: Project Overview
-description: High-level explanation of the Gold Futures Signal Trading Generator
+description: High-level explanation of the Multi-Market AI Signal Trading Platform
 ---
 
-The Gold Futures Signal Trading Generator is a robust system designed to generate predictive trading signals (e.g., "buy," "sell," "hold") for gold futures contracts. Its core objective is to automate and enhance trading decisions through a systematic, data-driven approach. The project is built around a Flask-based REST API, which serves as the primary interface for accessing these predictions. Underpinning the API is a sophisticated data pipeline that collects, preprocesses, and engineers features from historical gold futures data, which then feeds into recurrent neural networks (RNNs) like LSTMs and GRUs. Each model undergoes rigorous backtesting to ensure its viability and provide comprehensive performance metrics.
+This platform is designed to serve as a hub for AI-generated trading signals across a variety of financial markets. At its core, it hosts a growing collection of machine learning models that predict daily trading signals—**Buy**, **Hold**, or **Sell**—based on historical market data. Each model is trained on specific market data (e.g., gold futures, stocks, indices) and evaluated through a robust backtesting engine to measure its historical performance.
+
+The platform provides both a **REST API** for programmatic access and a **web interface** for visual exploration. Users can retrieve real-time predictions, analyze past trades, view performance metrics, and compare models side by side. While the system currently includes several pre-trained models, its long-term vision is to support a collaborative ecosystem: one where contributors can easily add new models, experiment with different strategies, and work toward creating smarter, more adaptive trading agents over time.
 
 ## Target Audience
 
-This documentation is tailored for various users: developers interested in API integration, traders looking for signal insights, and anyone curious about the technical aspects of the generator.
+
+This documentation is tailored for various users: developers interested in API integration, traders looking for signal insights, and anyone curious about the technical aspects of the platform. Whether you're aiming to consume predictions, contribute new models, or simply understand how the system works, this guide is designed to help you get started.

@@ -1,0 +1,187 @@
+---
+title: API Reference
+description: This page documents all available REST API endpoints for accessing market predictions, model information, and backtested trades. The API is not designed for real-time or high-frequency trading, but for **daily signal-based trading workflows**.
+---
+
+
+**Base URL:**
+
+```
+https://elm19.pythonanywhere.com
+```
+
+---
+
+## `/`
+
+Returns the API status and available routes.
+
+**Example Request in Python:**
+
+```python
+import requests
+requests.get("https://elm19.pythonanywhere.com/").json()
+```
+
+**Example Response:**
+
+```json
+{
+  "api_status": "healthy",
+  "endpoints": {
+    "/": "API status and available endpoints",
+    "/market": "Get all available markets",
+    "/market/<market_name>": "Get models for a specific market",
+    "/model-info": "Get information about all models",
+    "/model-info/<model_id>": "Get information about a specific model by its ID",
+    "/predict": "Get predictions for a specific model and date (or the latest date if not specified)",
+    "/predict/model?all=true": "Get all predictions for a specific model",
+    "/trades": "Get trades for a specific model, with pagination support"
+  }
+}
+```
+
+---
+
+## `/market`
+
+Returns all available market IDs.
+
+**Example Request in Python:**
+
+```python
+requests.get("https://elm19.pythonanywhere.com/market").json()
+```
+
+**Example Response:**
+
+```json
+{
+  "available_markets": ["GC"],
+  "last_checked": "2025-06-12T18:10:22.681064",
+  "total_markets": 1
+}
+```
+
+---
+
+## `/market/<market_id>`
+
+Returns all models associated with a specific market.
+
+**Example Response:**
+
+```json
+{
+  "last_checked": "2025-06-12T18:10:44.714301",
+  "market": "gc",
+  "models": [
+    {
+      "modelid": "model1",
+      "model_name": "model1",
+      "market": "GC",
+      "final_portfolio_value": 4784755.73,
+      "net_profit": 4774755.73471696,
+      "returns": 6.17060516146398,
+      "sharpe_ratio": 2.35589384807817,
+      "sqn": 5.77572745563007,
+      "max_drawdown_value": 131089.611988777,
+      "max_drawdown_percent": 9.16217537580173,
+      "total_trades": 666,
+      "last_updated": "Sun, 08 Jun 2025 00:00:00 GMT"
+    }
+  ],
+  "total_models": 1
+}
+```
+
+---
+
+## `/model-info`
+
+Returns metadata for all models.
+
+---
+
+## `/model-info/<model_id>`
+
+Returns metadata for a specific model.
+
+**Example Response:**
+
+```json
+{
+  "last_checked": "2025-06-12T18:00:16.683184",
+  "status": "available",
+  "model": {
+    "modelid": "model1",
+    "model_name": "model1",
+    "market": "GC",
+    "final_portfolio_value": 4784755.73,
+    "net_profit": 4774755.73471696,
+    "returns": 6.17060516146398,
+    "sharpe_ratio": 2.35589384807817,
+    "sqn": 5.77572745563007,
+    "max_drawdown_value": 131089.611988777,
+    "max_drawdown_percent": 9.16217537580173,
+    "total_trades": 666,
+    "last_updated": "Sun, 08 Jun 2025 00:00:00 GMT"
+  }
+}
+```
+
+---
+
+## `/predict?model_id=model1`
+
+Returns the most recent prediction for a given model.
+
+**Example Response:**
+
+```json
+{
+  "date": "Tue, 06 May 2025 00:00:00 GMT",
+  "modelid": "model1",
+  "prediction": "hold",
+  "proba_buy": 0.058192056,
+  "proba_hold": 0.7941962,
+  "proba_sell": 0.14761181
+}
+```
+
+---
+
+## `/predict/model?model_id=model1&all=true`
+
+Returns all historical predictions made by a specific model.
+
+---
+
+## `/trades?modelid=model1&range=0`
+
+Returns backtested trades for a model. Supports pagination via `range` param:
+
+* `range=0` → last 20 trades
+* `range=1` → previous 20, and so on
+
+**Example Response:**
+
+```json
+{
+  "modelid": "model1",
+  "total_trades": 666,
+  "trades": [
+    {
+      "entry_date": "Tue, 06 May 2025 00:00:00 GMT",
+      "entry_price": 3345.7,
+      "exit_date": "Tue, 06 May 2025 00:00:00 GMT",
+      "exit_price": 3313.94039310383,
+      "id": 984,
+      "modelid": "model1",
+      "pnl": 37249.4507883217,
+      "size": -1172.85616632797,
+      "type": "sell"
+    }
+  ]
+}
+```

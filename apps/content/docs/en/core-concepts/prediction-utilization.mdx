@@ -1,0 +1,69 @@
+---
+title: Advanced Concepts
+description: Leveraging Prediction Probabilities.
+---
+
+So far, we've discussed how a model can output a signal for each trading day: **buy**, **sell**, or **hold**. This approach is simple and practical—but it doesn't tell the whole story.
+
+Many models, particularly those trained for classification, can also return **probabilities** for each class. Instead of simply saying "buy," a model might predict:
+
+* `buy`: 72% probability
+* `hold`: 20%
+* `sell`: 8%
+
+These probabilities offer deeper insight into the model's confidence, which can be used to build **more advanced and nuanced strategies**.
+
+---
+
+## Why Use Probabilities?
+
+Simple signals treat all predictions as equal. But not all predictions are made with the same level of certainty. A model that outputs `buy` with 51% confidence is not the same as one with 90% confidence.
+
+Using probabilities allows you to:
+
+* **Avoid low-confidence trades** by setting a threshold (e.g. only act if confidence > 65%)
+* **Size positions dynamically** based on confidence levels
+* **Combine multiple models** using ensemble logic, where each model's vote is weighted by its confidence
+* **Detect indecision**: If probabilities are balanced, the model is likely uncertain—a good time to avoid trading
+
+---
+
+## Example Strategy Using Probabilities
+
+Here's a conceptual example of how probabilities can guide trading decisions:
+
+* If `buy` probability > 70% → enter long
+* If `sell` probability > 70% → enter short
+* If no class exceeds 70% → hold
+* If currently in a trade and the opposing signal exceeds 70% → exit and reverse
+
+This strategy avoids acting on weak or ambiguous predictions, reducing unnecessary trades.
+
+---
+
+## Where This Fits In the Pipeline
+
+To recap:
+
+1. **Market data** is collected
+2. **Targets** (buy/sell/hold) are created
+3. **Indicators** are added
+4. **Sequencing** and **splitting** are done
+5. **Model** is trained
+6. **Evaluation** is performed (ML metrics and backtesting)
+7. **Predictions** are generated
+8. **Strategies** are applied
+
+What we describe here happens **after Step 7**, when the model produces raw predictions. This page expands your toolbox for building intelligent strategies on top of those predictions.
+
+---
+
+## Summary
+
+Using prediction probabilities can:
+
+* Improve trade quality
+* Allow adaptive risk control
+* Help reduce noise from uncertain signals
+
+We encourage experimenting with these ideas to develop your own trading logic. They can significantly enhance both the **robustness** and **performance** of your final strategy.

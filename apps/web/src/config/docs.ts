@@ -120,6 +120,46 @@ export const docsConfig: DocsConfig = {
     },
     {
       title: {
+        en: 'Model Development',
+        fr: 'Développement de Modèles',
+      },
+      items: [
+        {
+          href: '/docs/models/target-labels',
+          title: {
+            en: 'Target Labels',
+            fr: 'Étiquettes Cibles',
+          },
+          items: [],
+        },
+        {
+          title: {
+            en: 'Supported Models',
+            fr: 'Modèles Supportés',
+          },
+          items: [
+            {
+              href: '/docs/models/model_v1',
+              title: {
+                en: 'Model_v1',
+                fr: 'Modèle_v1',
+              },
+              items: [],
+            },
+            {
+              href: '/docs/models/model_v2',
+              title: {
+                en: 'Model_v2',
+                fr: 'Modèle_v2',
+              },
+              items: [],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      title: {
         en: 'Development',
         fr: 'Développement',
       },

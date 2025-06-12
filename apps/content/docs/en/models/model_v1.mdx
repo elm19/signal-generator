@@ -1,0 +1,92 @@
+---
+title: Model V1
+description: Brief overview of Model V1 architecture, features, and performance.
+---
+We have developed many models for different markets, but we group them broadly into two versions: **Model V1**, and its improved successor, **Model V2**. This page focuses on the process and logic behind **Model V1**.
+
+---
+
+## Feature Selection: Indicators + OHLCV
+
+We started by researching the most popular technical indicators used by traders, especially those known to help detect trends or reversals. After several combinations and trials, the most effective set of indicators for this version was:
+
+* **ATR** (Average True Range) – period: 14 (default)
+* **RSI** (Relative Strength Index)
+* **SMA** (Simple Moving Average)
+* **MACD** (Moving Average Convergence Divergence) – using the default configuration (12, 26, 9)
+
+Combined with OHLC (Open, High, Low, Close) and Volume, our total input feature dimension becomes **11**.
+
+We selected a sequence length of **20 past days** as the input window to our model.
+
+---
+
+## Model Architecture
+
+We experimented with many architectures and discovered that a combination of **CNN + LSTM + Dropout** provided a good balance of performance and overfitting control.
+
+```python
+def create_regularized_model(input_shape, num_classes=3):
+    inputs = Input(shape=input_shape)
+
+    # Convolutional layer for feature extraction
+    x = Conv1D(32, kernel_size=3, activation='relu', padding='same')(inputs)
+    x = BatchNormalization()(x)
+    x = Dropout(0.3)(x)
+
+    # LSTM layer for temporal dependencies
+    x = LSTM(32, return_sequences=False, dropout=0.3, recurrent_dropout=0.2)(x)
+
+    # Fully connected layers with dropout
+    x = Dense(64, activation='relu')(x)
+    x = Dropout(0.4)(x)
+    x = Dense(32, activation='relu')(x)
+    x = Dropout(0.3)(x)
+
+    # Output layer
+    outputs = Dense(num_classes, activation='softmax')(x)
+
+    model = Model(inputs, outputs)
+    return model
+```
+
+---
+
+## Validation Results
+
+On the validation set:
+
+* **Validation Accuracy**: 53.44%
+* **Validation Loss**: \~1.0
+
+> While this may seem low at first glance, keep in mind that a completely random guesser (with 3 output classes) would yield only 33% accuracy. So this result shows a significant improvement over chance.
+
+---
+
+## Backtest Performance
+
+The real test for any model is profitability under realistic conditions. When backtested, this model yielded:
+
+* **Yearly Return**: 2.2%
+* **Sharpe Ratio**: 1.2
+
+While it technically turned a profit, these results weren’t compelling enough to justify using it in live or even demo trading.
+
+---
+
+## Areas for Improvement
+
+We explored several ways to improve:
+
+* **Model architecture**: Possibly too simple to capture deeper patterns
+* **Indicator selection**: Maybe the chosen combination wasn’t optimal
+
+But one idea stood out.
+
+### Could We Make the Model Aware of Its Own Past Predictions?
+
+Our insight was this: when a trend or reversal occurs, it typically spans several days. If the model could be made aware of the **predictions it made in previous days**, it might learn to **follow through** or **exit earlier** based on those ongoing patterns.
+
+This reasoning led us to build **Model V2**, which adds a second input stream: the past targets predicted.
+
+➡️ Continue to [Model V2](#) to see how this idea improved results.

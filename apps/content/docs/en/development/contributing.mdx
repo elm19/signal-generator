@@ -3,24 +3,56 @@ title: Contributing
 description: Guidelines for contributing to the Gold Futures Signal Trading Generator project
 ---
 
-# Contributing
+We’re always looking for passionate individuals to help grow and improve this project. Whether you're a developer, trader, researcher, or enthusiast—there are multiple ways you can contribute and make a meaningful impact.
 
-## Getting Started
-- Fork the repository
-- Development environment setup
-- Code style guidelines
+---
 
-## Making Changes
-- Creating branches
-- Commit message format
-- Testing requirements
+## 📘 General Contributions
 
-## Pull Requests
-- PR template
-- Review process
-- Merge criteria
+Here are some of the most common ways to contribute:
 
-## Development Resources
-- API documentation
-- Architecture overview
-- Testing guide
+* **Improve the documentation**: Fix typos, clarify explanations, or add missing sections.
+* **Translate the documentation**: Help us reach a broader audience by translating our docs into different languages.
+* **Suggest improvements**: Found a bug? Have a better way to structure something? Let us know by opening an issue.
+
+---
+
+## 🧪 Model Testing (Demo Trading)
+
+One practical and very valuable way to contribute is by testing our models in a **demo trading** environment. By simulating trades based on the model’s daily signals, you help us:
+
+* Understand real-world performance
+* Identify strengths and weaknesses
+* Collect more robust metrics
+
+> 📌 See our [Backtest](../core-concepts/backtest.md) section to learn about backtesting, then move to [Demo Trading Guide](../configuration/contribution.md) for step-by-step setup.
+
+If you test one of our models, we’d love to hear from you! Share the results with us (metrics, notes, screenshots)—this feedback is crucial.
+
+---
+
+## 🚀 Create and Share Your Own Models
+
+Want to design your own models and contribute them to the project? Great! Here’s how:
+
+1. **Fork this repository**.
+2. Inside the `/models` folder, **create a folder with your GitHub username**.
+3. In your folder, create subfolders for each model (e.g. `model1`, `model2`, etc.).
+4. Each model folder should contain:
+
+   * `predict.py`: A script that shows how to load and use your model to predict signals.
+   * `train.py` or a training notebook: Shows how your model is trained.
+   * `README.md`: A detailed explanation of your model, including:
+
+     * What data it uses
+     * What indicators/architectures are involved
+     * Training procedure
+     * Example results or backtest summary
+
+We’ll review high-performing models and potentially add them to our main set.
+
+If your model shows strong performance on unseen data and meets our evaluation criteria, it could become part of our production pipeline.
+
+---
+
+We’re excited to build this ecosystem together with the community. Thank you for being a part of it!

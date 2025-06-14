@@ -87,7 +87,6 @@ export default function ModelsPage() {
                 <th className="border px-4 py-2 text-left">Model Name</th>
                 <th className="border px-4 py-2 text-left">Accuracy</th>
                 <th className="border px-4 py-2 text-left">Precision</th>
-                <th className="border px-4 py-2 text-left">Recall</th>
                 <th className="border px-4 py-2 text-left">Market</th>
               </tr>
             </thead>
@@ -105,7 +104,6 @@ export default function ModelsPage() {
                   <td className="border px-4 py-2">
                     {model.precision || 'N/A'}%
                   </td>
-                  <td className="border px-4 py-2">{model.recall || 'N/A'}%</td>
                   <td className="border px-4 py-2">{model.market}</td>
                 </tr>
               ))}

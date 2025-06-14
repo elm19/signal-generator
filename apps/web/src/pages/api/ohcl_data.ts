@@ -12,7 +12,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { symbol = 'GC=F' } = req.query // default to gold if none provided
+  const { symbol = 'GC=F' } = req.query
 
   if (typeof symbol !== 'string') {
     return res.status(400).json({ error: 'Invalid symbol parameter' })
@@ -20,7 +20,7 @@ export default async function handler(
 
   try {
     const period1 = Math.floor(new Date('2010-3-25').getTime() / 1000)
-    const period2 = Math.floor(new Date('2025-05-06').getTime() / 1000)
+    const period2 = Math.floor(new Date('2025-06-13').getTime() / 1000)
 
     const url = `https://query1.finance.yahoo.com/v8/finance/chart/${symbol}=F?interval=1d&period1=${period1}&period2=${period2}`
     const response = await fetch(url)

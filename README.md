@@ -2,7 +2,7 @@
 
 > Advanced machine learning-## 📚 Documentation
 
-Visit our comprehensive documentation at [docs.goldspot-predictor.com](https://docs.goldspot-predictor.com) to learn about:
+Visit our comprehensive documentation at [docs.signal-predictor.com](https://signal-generatort-docs-web.vercel.app/docs](https://docs.goldspot-predictor.com) to learn about:
 
 - 📖 Getting Started Guide
 - 🔧 API Integration
@@ -20,13 +20,13 @@ Contributions are welcome! Here's how you can help:
 - ✨ Propose new features
 - 🧪 Add tests
 
-Please read our [Contributing Guide](https://docs.goldspot-predictor.com/docs/development/contributing) before submitting a Pull Request.
+Please read our [Contributing Guide](https://signal-generatort-docs-web.vercel.app/docs/development/contributing) before submitting a Pull Request.
 
 ## 📬 Support & Contact
 
 - 📧 Email: support@goldspot-predictor.com
 - 💬 GitHub Issues: [Create an issue](https://github.com/elm19/GoldSpot-Predictor/issues)
-- 🌐 Website: [goldspot-predictor.com](https://goldspot-predictor.com)
+- 🌐 Website: [signal-provider.com](https://signal-generatort-docs-web.vercel.app/)
 
 ## 📜 License
 
@@ -110,7 +110,7 @@ That said, there's a bunch of ways you can contribute to this project, like by:
 - :beetle: Reporting a bug
 - :page_facing_up: Improving the docs
 - :rotating_light: Sharing this project and recommending it to your friends
-- :dollar: Supporting this project on GitHub Sponsors or Patreon
+- :dollar: help us add new models
 - :star2: Giving a star on this repository
 
 ## License

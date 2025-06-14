@@ -2,7 +2,7 @@
 
 > Advanced machine learning-## 📚 Documentation
 
-Visit our comprehensive documentation at [docs.signal-predictor.com](https://signal-generatort-docs-web.vercel.app/docs](https://docs.goldspot-predictor.com) to learn about:
+Visit our comprehensive documentation at [docs.signal-predictor.com](https://signal-generatort-docs-web.vercel.app/docs] to learn about:
 
 - 📖 Getting Started Guide
 - 🔧 API Integration

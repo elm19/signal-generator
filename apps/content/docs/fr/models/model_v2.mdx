@@ -1,0 +1,71 @@
+---
+title: Model V2 Target-Aware Forecasting
+description: Model V2 architecture, features, and performance.
+---
+
+In our previous model, **Model V1**, we used a combination of well-known technical indicators (ATR, RSI, SMA, MACD) along with OHLC and volume data to forecast market signals (Buy, Hold, Sell) based on a sequence of 20 days. The model architecture combined CNN + LSTM layers and dropout regularization, achieving modest performance improvements over random chance. However, backtesting showed that the returns were too weak to be practical.
+
+To improve upon this, we proposed **Model V2**, which keeps the same architecture, indicators, and preprocessing—but introduces an additional input: the previous prediction.
+
+## Why Add the Previous Target?
+
+When analyzing the sequences of predicted targets across our dataset, a pattern becomes obvious:
+
+* A **Buy** signal is frequently followed by another **Buy**.
+* A **Sell** signal is often followed by **Sell** .
+* A **hold** signal is often followed by **hold** .
+
+This implies that trends and reversals are usually **not instantaneous** but span several days. Making the model aware of its **past decisions** allows it to better capture these temporal dependencies.
+
+We visualize this by plotting a random 100-day segment of the labeled targets using a step plot where:
+
+* Hold = 0
+* Buy = 1
+* Sell = -1
+
+![Step plot showing target pattern across time.](/images/g2.png)
+
+This pattern holds consistently across other sequences in the dataset, making the additional input not just reasonable but statistically motivated.
+
+## Improving Label Reliability Without Over-Reliance on Model Predictions
+
+Another advantage in Model V2 is smarter use of labeling logic.
+
+Recall that our target labeling function determines the correct label by scanning the following 5 days for sharp moves (defined as price change ≥ 1.5 ATR). Since each model input consists of the last 20 days, we already have full visibility into the first **15 out of those 20 days**. For those, we **already know** the true labels.
+
+Only the last **5 days** of the input window may require model inference, and even then, only if:
+
+* The signal remains "Hold" (which depends on the full 5-day window)
+* No sharp change has yet occurred
+
+## Hybrid Labeling Strategy:
+
+1. Run the target labeling function on the full dataset.
+2. Check the last 5 days of each 20-day input segment:
+
+   * If the label is **Buy** or **Sell**, trust it (ground truth).
+   * If it's **Hold**, run the model on that input and **replace the label** with the model prediction.
+
+This method allows us to leverage as much true signal as possible while only invoking the model where genuine ambiguity exists.
+
+## Backtesting Results
+
+### Model Performance Comparison
+
+| Metric            | Model V1 | Model V2 |
+| ----------------- | -------- | -------- |
+| Test Accuracy     | 0.5344   | 0.71     |
+| Test Loss         | 1.0      | 0.73     |
+| Yearly Return (%) | 2.2      | 6.17     |
+| Sharpe Ratio      | 1.2      | 2.36     |
+
+## Summary
+
+Model V2 makes two major improvements over Model V1:
+
+* It integrates the **previous prediction as an input**, leveraging temporal signal continuity.
+* It utilizes a **hybrid labeling strategy** to reduce reliance on model predictions when true labels can be determined algorithmically.
+
+The results speak clearly: with a **higher accuracy, lower loss**, and **significantly better backtest profitability and Sharpe ratio**, Model V2 outperforms its predecessor.
+
+With more risk-robust management strategies, these results could be further improved, making this a strong foundation for future iterations.

@@ -1,0 +1,42 @@
+---
+title: Aperçu de l'API
+description: Guide complet de l'API du Fournisseur de Signaux de Trading
+------------------------------------------------------------------------
+
+Toutes les requêtes API sont faites à l’URL de base suivante :
+
+```
+https://elm19.pythonanywhere.com
+```
+
+## Fonctionnement de l’API
+
+Notre plateforme est construite autour d'une API REST basée sur Flask, conçue pour le **trading quotidien basé sur des signaux** — et non pour le trading haute fréquence ou en temps réel. L'API fournit des prédictions pré-calculées et des données de modèles mises à jour une fois par jour.
+
+## Cycle de mise à jour quotidien
+
+À la fin de chaque journée de trading (vers **22h00 UTC**), une tâche planifiée s’exécute sur le serveur. Cette tâche :
+
+* Récupère les données de marché les plus récentes
+* Utilise chaque modèle pour générer la **prédiction du jour suivant**
+* Sauvegarde les résultats dans une base de données
+
+Une fois ce processus terminé, la plateforme est prête à fournir ces prédictions de manière cohérente tout au long du jour ouvré suivant via l’API.
+
+## Prédictions stockées
+
+Tous les points de terminaison liés aux prédictions retournent les données de la dernière exécution. Cela permet :
+
+* Des réponses API rapides et cohérentes
+* Un comportement fiable pendant la journée de trading (aucune inférence en direct)
+* Une intégration simplifiée pour les systèmes de trading automatisés ou manuels
+
+## Réentraînement du week-end
+
+Le week-end, la plateforme met éventuellement à jour certains modèles en utilisant les nouvelles données hebdomadaires disponibles. Cela comprend :
+
+* L’ajustement des modèles les plus performants
+* L’ajout de nouveaux modèles soumis par les utilisateurs
+* Le re-lancement des backtests pour actualiser les métriques de performance
+
+Ce pipeline de réentraînement améliore la précision et maintient les performances des modèles à jour sans affecter la stabilité en semaine.

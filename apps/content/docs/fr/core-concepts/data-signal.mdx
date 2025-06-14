@@ -1,0 +1,84 @@
+---
+title: From Data to Signals
+description: This section outlines the pipeline that transforms raw market data into actionable trading signals using machine learning models.
+---
+
+## Step 1: Market Data Collection
+
+The journey begins with collecting historical market data. This data typically includes:
+
+* **OHLC** (Open, High, Low, Close)
+* **Volume**
+
+The exact data needed depends on both the market and the model architecture. Data is sourced through easy-to-use APIs like **yfinance** (Yahoo Finance), with configurable parameters such as time range and granularity.
+
+---
+
+## Step 2: Target Generation (Signal Labels)
+
+To train a model, we need labels—known in trading systems as **signals**. Each day is labeled with one of three classes:
+
+* `buy`
+* `sell`
+* `hold`
+
+These labels are derived based on handcrafted rules that define what qualifies as a buy or sell opportunity. The model then tries to learn to generalize these rules for unseen future data.
+
+> For more details on our signal generation rules, [view our methodology here](#).
+
+---
+
+## Step 3: Feature Engineering (Input Expansion)
+
+The model can't perform well with raw OHLC and volume data alone. Unlike many structured datasets where patterns can be directly inferred, market data is often **noisy** and **non-deterministic**. This makes learning from it a difficult task.
+
+To improve learnability, we introduce **indicators**—mathematical features derived from the base data:
+
+* Moving Averages (e.g., SMA, EMA)
+* RSI, MACD
+* Bollinger Bands
+* Volatility measures
+
+> Choosing which indicators to use is more art than science. The right combination can make or break performance. We experimented extensively with different sets before arriving at our final designs.
+
+**Recap:**
+
+* Get market data
+* Assign a class (buy/sell/hold) to each day
+* Add more input features (indicators)
+
+---
+
+## Step 4: Sequencing
+
+Machine learning models for time series must understand temporal relationships. This requires converting our data into **sequences**, where each training sample includes:
+
+* A sliding window of `n` past days (input)
+* A target class for `m` steps ahead
+
+At this point, we also split the dataset into:
+
+* **Training set**
+* **Validation set**
+* **Test set** (optional)
+
+---
+
+## Step 5: Model Selection and Training
+
+This step is crucial. The chosen model must strike a balance between **learning meaningful patterns** and **avoiding overfitting**—where the model performs well on training data but poorly on unseen test data.
+
+During training, common metrics are tracked to evaluate learning quality:
+
+* Loss (CrossEntropy)
+* Accuracy
+* Precision / Recall
+* F1 Score
+
+Once training stabilizes and metrics are satisfactory, we move to the final and most crucial phase.
+
+---
+
+## Step 6: Backtesting
+
+Backtesting simulates how the model would have performed in the past. This is where we evaluate if our model is not only accurate but **profitable**. We’ll dive into the backtesting process in the next section.

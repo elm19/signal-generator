@@ -173,7 +173,7 @@ export const docsConfig: DocsConfig = {
           items: [],
         },
         {
-          href: '/docs/development/contributing',
+          href: '/docs/development/contribute',
           title: {
             en: 'Contributing',
             fr: 'Contribuer',

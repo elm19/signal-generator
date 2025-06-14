@@ -1,24 +1,46 @@
 ---
 title: Local Setup
-description: Guide for setting up the Gold Futures Signal Trading Generator locally
+description: This project is structured into **three separate repositories**, each serving a different role. To contribute or run the project locally, you'll need to understand how these repos relate and how to get started with each one.
 ---
 
-# Local Setup
+## Repository Overview
 
-## Environment Setup
-- Python version requirements
-- Virtual environment creation
-- Dependencies installation
+### 1. **Main Repository (this one)**
 
-## Configuration
-- Environment variables
-- API credentials
-- Local settings
+* Contains the **documentation site** and the **dashboard interface**.
+* It is the main entry point for users to interact with our project.
+* Link: [Main Repo](#)
 
-## Running the Project
-- Development server
-- Testing suite
-- Debugging tools
+### 2. **Experimental Models Repository**
 
-## Common Issues
-Troubleshooting guide for common setup problems
+* This is where our **initial prototypes** and **experimental model iterations** were developed.
+* It contains rough drafts, early ideas, and test notebooks.
+* Link: [Experimental Repo](#)
+
+### 3. **Backend API Repository**
+
+* Hosts the **Flask server** that serves model predictions via a REST API and the github actions that runs the model predictions.
+* It powers the backend used by the dashboard.
+* Link: [Backend Server Repo](#)
+
+---
+
+## Running Locally
+
+To run any of the components locally:
+
+1. **Fork** the repository you want to work with.
+2. **Clone** your forked version.
+3. Follow the **README.md** provided in each repository for local setup instructions.
+
+Each README includes details like:
+
+* Required dependencies
+* Environment configuration
+* How to start the server or application
+
+Make sure to create virtual environments when needed and install packages using the correct requirements file.
+
+---
+
+If you're contributing to more than one part (e.g., frontend + backend), consider running each in its own terminal or workspace.

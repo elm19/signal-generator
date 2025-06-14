@@ -28,7 +28,11 @@ export default function MarketPage() {
         setLoadingPredictions(true)
         try {
           const response = await fetch(
-            `${backEndLink}predict/model?model_id=${selectedModel}&all=true`
+            `${backEndLink}predict/model?model_id=${selectedModel}&all=true`,
+            {
+              method: 'GET',
+              cache: 'no-store', // Ensures the response is not cached
+            }
           )
           const data = await response.json()
           if (data.length > 2) {

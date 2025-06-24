@@ -69,5 +69,41 @@ export default function sitemap(): Sitemap {
     }
   })
 
-  return [...paths, ...docPaths, ...blogPaths]
+  const dashboardPaths: Sitemap = [
+    {
+      url: absoluteUrl(`/dashboard`),
+      lastModified: new Date(),
+      alternates: {
+        languages: Object.fromEntries(
+          locales.map((locale) => [locale, absoluteUrl(`/${locale}/dashboard`)])
+        ),
+      },
+    },
+    {
+      url: absoluteUrl(`/dashboard/gc`),
+      lastModified: new Date(),
+      alternates: {
+        languages: Object.fromEntries(
+          locales.map((locale) => [
+            locale,
+            absoluteUrl(`/${locale}/dashboard/gc`),
+          ])
+        ),
+      },
+    },
+    {
+      url: absoluteUrl(`/models`),
+      lastModified: new Date(),
+      alternates: {
+        languages: Object.fromEntries(
+          locales.map((locale) => [
+            locale,
+            absoluteUrl(`/${locale}/dashboard/gc`),
+          ])
+        ),
+      },
+    },
+  ]
+
+  return [...paths, ...docPaths, ...blogPaths, ...dashboardPaths]
 }

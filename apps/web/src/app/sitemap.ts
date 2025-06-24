@@ -11,23 +11,23 @@ export default function sitemap(): Sitemap {
     {
       url: absoluteUrl(`/`),
       lastModified: new Date(),
-
-      alternates: {
-        languages: Object.fromEntries(
-          locales.map((locale) => [locale, absoluteUrl(`/${locale}`)])
-        ),
-      },
+      changeFrequency: 'weekly',
+      // alternates: {
+      //   languages: Object.fromEntries(
+      //     locales.map((locale) => [locale, absoluteUrl(`/${locale}`)])
+      //   ),
+      // },
     },
 
     {
       url: absoluteUrl(`/docs`),
       lastModified: new Date(),
 
-      alternates: {
-        languages: Object.fromEntries(
-          locales.map((locale) => [locale, absoluteUrl(`/${locale}/docs`)])
-        ),
-      },
+      // alternates: {
+      //   languages: Object.fromEntries(
+      //     locales.map((locale) => [locale, absoluteUrl(`/${locale}/docs`)])
+      //   ),
+      // },
     },
   ]
 
@@ -38,15 +38,17 @@ export default function sitemap(): Sitemap {
     return {
       url: absoluteUrl(`/docs/${docSlug}`),
       lastModified: new Date(),
+      changeFrequency: 'weekly',
 
-      alternates: {
-        languages: Object.fromEntries(
-          locales.map((locale) => [
-            locale,
-            absoluteUrl(`/${locale}/docs/${docSlug}`),
-          ])
-        ),
-      },
+
+      // alternates: {
+      //   languages: Object.fromEntries(
+      //     locales.map((locale) => [
+      //       locale,
+      //       absoluteUrl(`/${locale}/docs/${docSlug}`),
+      //     ])
+      //   ),
+      // },
     }
   })
 
@@ -57,15 +59,17 @@ export default function sitemap(): Sitemap {
     return {
       url: absoluteUrl(`/blog/${postSlug}`),
       lastModified: new Date(),
+      changeFrequency: 'weekly',
 
-      alternates: {
-        languages: Object.fromEntries(
-          locales.map((locale) => [
-            locale,
-            absoluteUrl(`/${locale}/blog/${postSlug}`),
-          ])
-        ),
-      },
+
+      // alternates: {
+      //   languages: Object.fromEntries(
+      //     locales.map((locale) => [
+      //       locale,
+      //       absoluteUrl(`/${locale}/blog/${postSlug}`),
+      //     ])
+      //   ),
+      // },
     }
   })
 
@@ -73,37 +77,44 @@ export default function sitemap(): Sitemap {
     {
       url: absoluteUrl(`/dashboard`),
       lastModified: new Date(),
-      alternates: {
-        languages: Object.fromEntries(
-          locales.map((locale) => [locale, absoluteUrl(`/${locale}/dashboard`)])
-        ),
-      },
+      changeFrequency: 'weekly',
+
+      // alternates: {
+      //   languages: Object.fromEntries(
+      //     locales.map((locale) => [locale, absoluteUrl(`/${locale}/dashboard`)])
+      //   ),
+      // },
     },
     {
       url: absoluteUrl(`/dashboard/gc`),
       lastModified: new Date(),
-      alternates: {
-        languages: Object.fromEntries(
-          locales.map((locale) => [
-            locale,
-            absoluteUrl(`/${locale}/dashboard/gc`),
-          ])
-        ),
-      },
+      changeFrequency: 'daily',
+
+      // alternates: {
+      //   languages: Object.fromEntries(
+      //     locales.map((locale) => [
+      //       locale,
+      //       absoluteUrl(`/${locale}/dashboard/gc`),
+      //     ])
+      //   ),
+      // },
     },
     {
       url: absoluteUrl(`/models`),
+      changeFrequency: 'weekly',
       lastModified: new Date(),
-      alternates: {
-        languages: Object.fromEntries(
-          locales.map((locale) => [
-            locale,
-            absoluteUrl(`/${locale}/dashboard/gc`),
-          ])
-        ),
-      },
+      // alternates: {
+      //   languages: Object.fromEntries(
+      //     locales.map((locale) => [
+      //       locale,
+      //       absoluteUrl(`/${locale}/dashboard/gc`),
+      //     ])
+      //   ),
+      // },
     },
   ]
 
   return [...paths, ...docPaths, ...blogPaths, ...dashboardPaths]
 }
+
+

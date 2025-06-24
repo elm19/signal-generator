@@ -18,10 +18,10 @@ export const blogConfig: BlogConfig = {
         with the id below
       */
       id: 'elm19',
-      name: 'EL Majdi Walid',
+      name: 'elm19',
       image: '/authors/dummy.jpg',
       site: '/',
-      email: 'walidmajd1@gmail.com',
+      email: 'elm19@gmail.com',
 
       bio: {
         en: 'AI and Data Science Engineering Student',

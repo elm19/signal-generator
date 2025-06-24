@@ -44,12 +44,12 @@ export async function generateMetadata({
       'React',
       'shadcn',
       'Next.js',
-      'Radix UI',
-      'Template',
-      'Tailwind CSS',
+      'trading',
+      'models',
+      'ai',
       'Documentation',
-      'Server Components',
-      'Internationalization',
+      'machine learning',
+      'signals',
     ],
 
     authors: [
@@ -120,6 +120,10 @@ export default function RootLayout({ children, params }: AppLayoutProps) {
     <html lang={params.locale || defaultLocale} suppressHydrationWarning>
       <head>
         <meta name="theme-color" content="#181423" />
+        <meta
+          name="google-site-verification"
+          content="A_BsV8PVGd1Hk-Pa0y2hkuExpdttUCRp91rYAj3k-I0"
+        />
       </head>
 
       <body

@@ -1,7 +1,7 @@
 {
   "name": "trading-signals-docs",
   "private": true,
-  "author": "EL Majdi Walid <walidmajd1@gmail.com>",
+  "author": "elm19",
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",

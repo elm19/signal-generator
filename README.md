@@ -25,12 +25,9 @@ Please read our [Contributing Guide](https://signal-generatort-docs-web.vercel.a
 ## 📬 Support & Contact
 
 - 📧 Email: support@goldspot-predictor.com
-- 💬 GitHub Issues: [Create an issue](https://github.com/elm19/GoldSpot-Predictor/issues)
+- 💬 GitHub Issues: [Create an issue](https://github.com/elm19/signal-generator/issues)
 - 🌐 Website: [signal-provider.com](https://signal-generatort-docs-web.vercel.app/)
 
-## 📜 License
-
-Licensed under the [MIT License](./LICENSE.md). Copyright © 2025 GoldSpot Predictor.l generation platform for gold futures markets. Access real-time trading signals through our API or use the platform locally for custom trading strategies.
 
 <p align="center">
   <a href="#features">
@@ -115,4 +112,5 @@ That said, there's a bunch of ways you can contribute to this project, like by:
 
 ## License
 
-Licensed under the [MIT license]
+This project is licensed under the [MIT License](./LICENSE.md).  
+It includes work originally created by [Dalton Menezes](https://github.com/daltonmenezes) and [shadcn](https://github.com/shadcn), both MIT licensed.

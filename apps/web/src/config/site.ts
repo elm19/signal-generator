@@ -26,15 +26,15 @@ export const siteConfig = {
   },
 
   author: {
-    name: 'EL Majdi Walid',
+    name: 'elm19',
     site: './',
   },
 
   links: {
     twitter: {
       label: 'Twitter',
-      username: '@elmajdiwalid',
-      url: 'https://twitter.com/elmajdiwalid',
+      username: '@elm19',
+      url: 'https://twitter.com/elm19',
     },
 
     github: {

@@ -22,18 +22,7 @@ Contributions are welcome! Here's how you can help:
 
 Please read our [Contributing Guide](https://signal-generatort-docs-web.vercel.app/docs/development/contributing) before submitting a Pull Request.
 
-## 📬 Support & Contact
 
-- 📧 Email: support@goldspot-predictor.com
-- 💬 GitHub Issues: [Create an issue](https://github.com/elm19/signal-generator/issues)
-- 🌐 Website: [signal-provider.com](https://signal-generatort-docs-web.vercel.app/)
-
-
-<p align="center">
-  <a href="#features">
-    <img alt="Gold Trading Signal Generator Banner" src="./apps/web/public/og.jpg" width="100%">
-  </a>
-</p>
 
 <p align="center">
   <!-- GitHub -->
@@ -47,17 +36,6 @@ Please read our [Contributing Guide](https://signal-generatort-docs-web.vercel.a
   <!-- Version -->
   <a href="https://github.com/elm19/GoldSpot-Predictor/releases">
      <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-1C1E26?style=for-the-badge&labelColor=1C1E26&color=a277ff"/>
-  </a>
-  <!-- License -->
-  <a href="https://github.com/elm19/GoldSpot-Predictor/blob/main/LICENSE">
-    <img alt="License" src="https://img.shields.io/badge/license%20-MIT-1C1E26?style=for-the-badge&labelColor=1C1E26&color=50e1c7"/>
-  </a>
-</p>
-
-<p align="center">
-  <!-- API Documentation -->
-  <a href="https://docs.goldspot-predictor.com/api">
-    <img alt="View API Documentation" src="https://img.shields.io/badge/view-api%20docs-1C1E26?style=for-the-badge&labelColor=1C1E26&color=FFD700"/>
   </a>
 </p>
 

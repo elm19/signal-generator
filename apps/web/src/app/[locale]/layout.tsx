@@ -1,10 +1,9 @@
+/* eslint-disable @next/next/next-script-for-ga */
 import { setRequestLocale } from 'next-intl/server'
 
 import type { LocaleOptions } from '@/lib/opendocs/types/i18n'
 import type { Metadata, Viewport } from 'next'
-
 import '@/styles/globals.css'
-
 import { getObjectValueByLocale } from '@/lib/opendocs/utils/locale'
 import { ThemeProvider } from '@/components/theme-provider'
 import { SiteFooter } from '@/components/site-footer'
@@ -124,6 +123,15 @@ export default function RootLayout({ children, params }: AppLayoutProps) {
           name="google-site-verification"
           content="A_BsV8PVGd1Hk-Pa0y2hkuExpdttUCRp91rYAj3k-I0"
         />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-KHCHP2FX');`,
+          }}
+        />
       </head>
 
       <body
@@ -132,6 +140,14 @@ export default function RootLayout({ children, params }: AppLayoutProps) {
           fontSans.variable
         )}
       >
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-KHCHP2FX"
+            height="0"
+            width="0"
+            className="none hidden"
+          ></iframe>
+        </noscript>
         <NextIntlClientProvider
           locale={params.locale || defaultLocale}
           messages={{}}
